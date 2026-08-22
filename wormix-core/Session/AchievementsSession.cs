@@ -1,4 +1,5 @@
-﻿using wormix_core.Controllers.Http.Account;
+﻿using System.Text;
+using wormix_core.Controllers.Http.Account;
 using wormix_core.Controllers.Http.Game;
 using wormix_core.Controllers.Http.Info;
 using wormix_core.Controllers.Static.Account;
@@ -24,8 +25,66 @@ public class AchievementsSession(TcpServer server) : TcpSession(server)
         };
     }
 
+    private static Stream ExtractPostBodyToStream(Stream dataStream)
+    {
+        var headerBytes = new List<byte>();
+        int prevA = -1, prevB = -1, prevC = -1, prevD = -1; // sliding window for \r\n\r\n
+        int b;
+
+        while ((b = dataStream.ReadByte()) != -1)
+        {
+            headerBytes.Add((byte)b);
+
+            prevA = prevB; prevB = prevC; prevC = prevD; prevD = b;
+            if (prevA == '\r' && prevB == '\n' && prevC == '\r' && prevD == '\n')
+                break; // found end of headers
+        }
+
+        string headerText = Encoding.ASCII.GetString(headerBytes.ToArray());
+        string[] lines = headerText.Split(new[] { "\r\n" }, StringSplitOptions.None);
+
+        // --- 2. Parse Content-Length from headers ---
+        int contentLength = 0;
+        foreach (string line in lines)
+        {
+            int colonIdx = line.IndexOf(':');
+            if (colonIdx <= 0) continue;
+
+            string name = line.Substring(0, colonIdx).Trim();
+            string value = line.Substring(colonIdx + 1).Trim();
+
+            if (string.Equals(name, "Content-Length", StringComparison.OrdinalIgnoreCase))
+            {
+                if (!int.TryParse(value, out contentLength))
+                    throw new InvalidDataException($"Invalid Content-Length value: '{value}'");
+            }
+        }
+
+        if (contentLength <= 0)
+        {
+            // No body expected / declared
+            return new MemoryStream(Array.Empty<byte>());
+        }
+
+        // --- 3. Read exactly contentLength bytes for the body ---
+        byte[] bodyBuffer = new byte[contentLength];
+        int totalRead = 0;
+        while (totalRead < contentLength)
+        {
+            int read = dataStream.Read(bodyBuffer, totalRead, contentLength - totalRead);
+            if (read == 0)
+                throw new EndOfStreamException("Stream ended before full body was received.");
+            totalRead += read;
+        }
+
+        var bodyStream = new MemoryStream(bodyBuffer);
+        bodyStream.Position = 0;
+        return bodyStream;
+    }
+
     protected override void OnMessage(Stream dataStream)
     {
-        ProcessMessage(dataStream);
+        Stream parsedPostStream = ExtractPostBodyToStream(dataStream);
+        ProcessMessage(parsedPostStream);
     }
 }
