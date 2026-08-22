@@ -212,7 +212,15 @@ public class TcpSession
             byte[] data = new byte[cmd.GetLength()];
             if (cmd.GetLength() != 0)
             {
-                sessionClient?.Client.Receive(data);
+                int totalRead = 0;
+                while (totalRead < data.Length)
+                {
+                    int read = dataStream.Read(data, totalRead, data.Length - totalRead);
+                    if (read == 0)
+                        throw new EndOfStreamException("Payload ended prematurely");
+                    totalRead += read;
+                }
+
                 if(log)
                     ColorPrint.WriteLine($"[{this}] RAW:\n{HexDump.HexDump.Format(data)}", ConsoleColor.Yellow);
             }
