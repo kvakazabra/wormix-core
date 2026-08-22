@@ -33,6 +33,8 @@ public class ConfigParser
                         return new DomainPolicyServer(serverAddress, server.Value.Port);
                     case "pvp":
                         return new PvpServer(serverAddress, server.Value.Port);
+                    case "achieve":
+                        return new AchievementsServer(serverAddress, server.Value.Port);
                 }
 
                 return null;
