@@ -158,7 +158,7 @@ public class TcpSession
                 //     continue;
                 
                 byte[] peakByte = new byte[1];
-                if (sessionClient.Client.Receive(peakByte, SocketFlags.Peek) == 0)
+                if (sessionClient.Client?.Receive(peakByte, SocketFlags.Peek) == 0)
                     break;
             }
             catch
