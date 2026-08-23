@@ -20,7 +20,7 @@ public struct AchieveLoginSuccessBinarySerializer : ICommandSerializer
         {
             BinaryCommandHeader header = new BinaryCommandHeader();
             header.SetCommandId(GetCommandId());
-            header.SetLength(command.GetSize());
+            header.SetLength(command.GetSize() + 16 /* md5 sum */);
 
             byte[] payload = new byte[command.GetSize()];
             using (MemoryStream ms = new MemoryStream(payload))

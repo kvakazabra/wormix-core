@@ -103,7 +103,7 @@ public class TcpSession
     /// Send message to server
     /// </summary>
     /// <param name="message"></param>
-    public void SendMessage(byte[] message)
+    public virtual void SendMessage(byte[] message)
     {
         sessionClient?.Client.Send(message);
     }

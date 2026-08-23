@@ -21,6 +21,8 @@ public class AchievementsSession(TcpServer server) : TcpSession(server)
     {
         return new()
         {
+            {16, new PingHandler(new PingBinarySerializer(), new PingController(), this) },
+
             {3001, new AchieveLoginHandler(new AchieveLoginBinarySerializer(), new AchieveLoginController(), this)},
         };
     }
@@ -86,5 +88,22 @@ public class AchievementsSession(TcpServer server) : TcpSession(server)
     {
         Stream parsedPostStream = ExtractPostBodyToStream(dataStream);
         ProcessMessage(parsedPostStream);
+    }
+
+    public override void SendMessage(byte[] message)
+    {
+        var sb = new StringBuilder();
+        sb.Append("HTTP/1.1 200 OK\r\n");
+        sb.Append("Content-Type: application/octet-stream\r\n");
+        sb.Append($"Content-Length: {message.Length}\r\n");
+        sb.Append("Connection: close\r\n");
+        sb.Append("\r\n");
+
+        byte[] head = Encoding.ASCII.GetBytes(sb.ToString());
+        byte[] response = new byte[head.Length + message.Length];
+        Buffer.BlockCopy(head, 0, response, 0, head.Length);
+        Buffer.BlockCopy(message, 0, response, head.Length, message.Length);
+
+        base.SendMessage(response); // raw socket send
     }
 }

@@ -19,16 +19,23 @@ public class AchieveLoginHandler(ICommandSerializer requestSerializer, IGameCont
                 throw new ArgumentException("Invalid achieve login struct");
 
             ISerializable result = MessageController.ProcessMessage(achieveLoginRequest, Client);
-            if (result is AchieveLoginSuccess success)
+            if (result is AchieveLoginSuccess)
             {
+                AchieveLoginSuccessBinarySerializer serializer = new AchieveLoginSuccessBinarySerializer();
+                using MemoryStream stream = new MemoryStream();
 
+                serializer.SerializeCommand(result, stream);
+                Client.SendMessage(stream.ToArray());
             }
             else
             {
-                if (result is AchieveLoginError error)
+                if (result is AchieveLoginError)
                 {
                     AchieveLoginErrorBinarySerializer serializer = new AchieveLoginErrorBinarySerializer();
-                    serializer.SerializeCommand(result, Client.GetStream()); // todo: wrap as HTTP response
+                    using MemoryStream stream = new MemoryStream();
+
+                    serializer.SerializeCommand(result, stream);
+                    Client.SendMessage(stream.ToArray());
                 }
 
                 Thread.Sleep(1000);
