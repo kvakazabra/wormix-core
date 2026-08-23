@@ -21,7 +21,7 @@ public class AchievementsSession(TcpServer server) : TcpSession(server)
     {
         return new()
         {
-
+            {3001, new AchieveLoginHandler(new AchieveLoginBinarySerializer(), new AchieveLoginController(), this)},
         };
     }
 
