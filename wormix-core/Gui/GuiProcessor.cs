@@ -5,6 +5,6 @@ public class GuiProcessor
     public void GuiLoop()
     {
         //Not implemented
-        Console.ReadLine();
+        Thread.Sleep(Timeout.Infinite);
     }
 }
