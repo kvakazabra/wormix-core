@@ -1,18 +1,22 @@
-﻿using wormix_core.Extensions;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Server;
 
-public struct DowngradeWeaponResult : ISerializable
+public struct DowngradeWeaponResult() : ISerializable
 {
-    public const int Success = 0;
-
     public short RecipeId;
     public short Result;
-    
+    public bool IsSecure;
+
     public uint GetSize()
     {
-        return 4;
+        return (uint)(
+            // RecipeId
+            2 +
+            // Result
+            2
+        );
     }
 
     public void Serialize(Stream output)
@@ -22,3 +26,4 @@ public struct DowngradeWeaponResult : ISerializable
         bw.WriteUInt16Be((ushort)Result);
     }
 }
+

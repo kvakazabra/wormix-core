@@ -1,14 +1,15 @@
-﻿using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Client;
 
-public struct StartBattle : ISerializable
+public struct StartBattle() : ISerializable
 {
     public short MissionId;
 
     public uint GetSize()
     {
-        return 4;
+        return 0; //Not needed
     }
 
     public void Serialize(Stream output)

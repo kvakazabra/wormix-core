@@ -1,4 +1,5 @@
-﻿using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
@@ -18,9 +19,11 @@ public class BuyReactionRateBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        BuyReactionRate result = new();
+        BuyReactionRate msg = new();
+
         BinaryReader br = new BinaryReader(input);
-        result.ReactionRateCount = br.ReadByte();
-        return result;
+        msg.ReactionRateLevel = (int)br.ReadUInt32Be();
+
+        return msg;
     }
 }

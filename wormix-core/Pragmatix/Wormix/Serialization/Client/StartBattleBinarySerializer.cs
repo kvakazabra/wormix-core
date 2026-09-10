@@ -1,4 +1,4 @@
-﻿using wormix_core.Extensions;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
@@ -19,9 +19,11 @@ public class StartBattleBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        StartBattle battle = new StartBattle();
+        StartBattle msg = new();
+
         BinaryReader br = new BinaryReader(input);
-        battle.MissionId = (short)br.ReadUInt16Be();
-        return battle;
+        msg.MissionId = (short)br.ReadUInt16Be();
+
+        return msg;
     }
 }

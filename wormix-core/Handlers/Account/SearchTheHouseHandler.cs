@@ -1,4 +1,4 @@
-﻿using wormix_core.Controllers;
+using wormix_core.Controllers;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Serialization.Server;
@@ -13,8 +13,8 @@ public class SearchTheHouseHandler(ICommandSerializer requestSerializer, IGameCo
     {
         if (requestMessage is SearchTheHouse)
         {
-            new SearchTheHouseResultBinarySerializer()
-                .SerializeCommand(MessageController.ProcessMessage(requestMessage, Client), Client.GetStream());
+            SearchTheHouseResultBinarySerializer serializer = new SearchTheHouseResultBinarySerializer();
+            serializer.SerializeCommand(MessageController.ProcessMessage(requestMessage, Client), Client.GetStream());
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using wormix_core.Extensions;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Structures;
@@ -7,13 +7,15 @@ public struct ProfileDoubleKeyStructure : ISerializable
 {
     public uint LongId;
     public string StringId;
-    
+
     public uint GetSize()
     {
         return (uint)(
-            4 //LongId
-            + 2 + StringId.Length //StringId
-            );
+            // LongId
+            4 +
+            // StringId
+            2 + System.Text.Encoding.UTF8.GetByteCount(StringId)
+        );
     }
 
     public void Serialize(Stream output)
@@ -23,3 +25,4 @@ public struct ProfileDoubleKeyStructure : ISerializable
         bw.WriteUTF8(StringId);
     }
 }
+

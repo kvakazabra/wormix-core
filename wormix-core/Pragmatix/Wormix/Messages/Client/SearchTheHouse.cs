@@ -1,24 +1,21 @@
-﻿using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Client;
 
-public struct SearchTheHouse(string sessionKey = "", uint friendId = 0, byte keyNum = 0) : ISerializable
+public struct SearchTheHouse() : ISerializable
 {
-    public string SessionKey = sessionKey;
-    public uint FriendId = friendId;
-    public byte KeyNum = keyNum;
-    
+    public string SessionKey = "";
+    public uint FriendId;
+    public byte KeyNum;
+
     public uint GetSize()
     {
-        return (uint)(
-            2 + SessionKey.Length //SessionKey
-            + 4 //FriendID
-            + 1 //KeyNum
-            );
+        return 0; //Not needed
     }
 
     public void Serialize(Stream output)
     {
-        throw new NotImplementedException();
+        //Not needed
     }
 }

@@ -1,4 +1,4 @@
-﻿using wormix_core.Extensions;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
@@ -19,13 +19,13 @@ public class SearchTheHouseBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        SearchTheHouse result = new();
-        BinaryReader br = new BinaryReader(input);
+        SearchTheHouse msg = new();
 
-        result.SessionKey = br.ReadUTF8();
-        result.FriendId = br.ReadUInt32Be();
-        result.KeyNum = br.ReadByte();
-        
-        return result;
+        BinaryReader br = new BinaryReader(input);
+        msg.SessionKey = br.ReadUTF8();
+        msg.FriendId = br.ReadUInt32Be();
+        msg.KeyNum = br.ReadByte();
+
+        return msg;
     }
 }

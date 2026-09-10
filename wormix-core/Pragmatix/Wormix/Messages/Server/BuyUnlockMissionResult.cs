@@ -1,14 +1,18 @@
-﻿using wormix_core.Extensions;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Server;
 
-public struct BuyUnlockMissionResult : ISerializable
+public struct BuyUnlockMissionResult() : ISerializable
 {
     public short Result;
+
     public uint GetSize()
     {
-        return 2;
+        return (uint)(
+            // Result
+            2
+        );
     }
 
     public void Serialize(Stream output)
@@ -17,3 +21,4 @@ public struct BuyUnlockMissionResult : ISerializable
         bw.WriteUInt16Be((ushort)Result);
     }
 }
+

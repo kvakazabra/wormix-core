@@ -1,14 +1,16 @@
-﻿using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Client;
 
-public struct PumpReactionRate : ISerializable
+public struct PumpReactionRate() : ISerializable
 {
     public uint FriendId;
-    
+    public string SessionKey = "";
+
     public uint GetSize()
     {
-        return 4;
+        return 0; //Not needed
     }
 
     public void Serialize(Stream output)

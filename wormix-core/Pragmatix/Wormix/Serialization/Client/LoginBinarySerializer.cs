@@ -1,5 +1,4 @@
-﻿using wormix_core.Extensions;
-using wormix_core.Pragmatix.Flox.Secure;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
@@ -20,17 +19,30 @@ public class LoginBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        Login login = new();
-        
+        Login msg = new();
+
         BinaryReader br = new BinaryReader(input);
-        login.Id = br.ReadUInt32Be();
-        login.ReferrerId = br.ReadUInt32Be();
-        login.AuthKey = br.ReadUTF8();
-        ushort idsCount = br.ReadUInt16Be();
-        for(int i = 0; i < idsCount; i++)
-            login.Ids.Add(br.ReadUInt32());
-        login.SocialCode = br.ReadByte();
-        
-        return login;
+        msg.Id = br.ReadUInt32Be();
+        msg.ReferrerId = br.ReadUInt32Be();
+        msg.AuthKey = br.ReadUTF8();
+        msg.Version = ParseVersion((int)br.ReadUInt32Be());
+        ushort n = br.ReadUInt16Be();
+        for (int i = 0; i < n; i++)
+            msg.Ids.Add(br.ReadUInt32Be());
+        msg.SocialCode = br.ReadByte();
+        n = br.ReadUInt16Be();
+        for (int i = 0; i < n; i++)
+            msg.Params.Add(br.ReadUTF8());
+
+        return msg;
+    }
+
+    private static string ParseVersion(int version)
+    {
+        int b0 = (version >> 24) & 0xFF;
+        int b1 = (version >> 16) & 0xFF;
+        int b2 = (version >> 8) & 0xFF;
+        int b3 = version & 0xFF;
+        return $"{b0}.{b1}.{b2}.{b3}";
     }
 }

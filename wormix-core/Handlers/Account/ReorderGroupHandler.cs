@@ -1,4 +1,4 @@
-﻿using wormix_core.Controllers;
+using wormix_core.Controllers;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Serialization.Server;
@@ -13,8 +13,8 @@ public class ReorderGroupHandler(ICommandSerializer requestSerializer, IGameCont
     {
         if (requestMessage is ReorderGroup)
         {
-            new ReorderGroupResultBinarySerializer()
-                .SerializeCommand(MessageController.ProcessMessage(requestMessage, Client), Client.GetStream());
+            ReorderGroupResultBinarySerializer serializer = new ReorderGroupResultBinarySerializer();
+            serializer.SerializeCommand(MessageController.ProcessMessage(requestMessage, Client), Client.GetStream());
         }
     }
 }

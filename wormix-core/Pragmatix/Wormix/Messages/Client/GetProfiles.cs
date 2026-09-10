@@ -1,6 +1,20 @@
-﻿namespace wormix_core.Pragmatix.Wormix.Messages.Client;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
-public struct GetProfiles
+namespace wormix_core.Pragmatix.Wormix.Messages.Client;
+
+public struct GetProfiles() : ISerializable
 {
-    public object[] Ids;
+    public string SessionKey = "";
+    public List<string> Ids = new();
+
+    public uint GetSize()
+    {
+        return 0; //Not needed
+    }
+
+    public void Serialize(Stream output)
+    {
+        //Not needed
+    }
 }

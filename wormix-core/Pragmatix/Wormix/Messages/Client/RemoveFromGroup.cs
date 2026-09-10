@@ -1,13 +1,15 @@
-﻿using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Client;
 
-public struct RemoveFromGroup(uint profileId = 0) : ISerializable
+public struct RemoveFromGroup() : ISerializable
 {
-    public uint ProfileId = profileId;
+    public int ProfileId;
+
     public uint GetSize()
     {
-        return 4;
+        return 0; //Not needed
     }
 
     public void Serialize(Stream output)

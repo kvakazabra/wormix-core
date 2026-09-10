@@ -1,8 +1,20 @@
-﻿namespace wormix_core.Pragmatix.Wormix.Messages.Client;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
-public struct GetAchievements
+namespace wormix_core.Pragmatix.Wormix.Messages.Client;
+
+public struct GetAchievements() : ISerializable
 {
-    public string ProfileId;
-    public int InvestedAwardPoints;
-    public bool IsSecure;
+    public string ProfileId = "";
+    public byte InvestedAwardPoints;
+
+    public uint GetSize()
+    {
+        return 0; //Not needed
+    }
+
+    public void Serialize(Stream output)
+    {
+        //Not needed
+    }
 }

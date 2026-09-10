@@ -1,4 +1,4 @@
-﻿using wormix_core.Controllers;
+using wormix_core.Controllers;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Serialization.Server;
 using wormix_core.Session;
@@ -10,7 +10,6 @@ public class PingHandler(ICommandSerializer requestSerializer, IGameController c
 {
     protected override void Process()
     {
-        //Sending PONG
         new PongBinarySerializer()
             .SerializeCommand(
                 MessageController.ProcessMessage(requestMessage!, Client), 

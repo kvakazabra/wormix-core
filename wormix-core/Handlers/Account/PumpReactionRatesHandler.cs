@@ -1,4 +1,4 @@
-﻿using wormix_core.Controllers;
+using wormix_core.Controllers;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Serialization.Server;
@@ -13,8 +13,8 @@ public class PumpReactionRatesHandler(ICommandSerializer requestSerializer, IGam
     {
         if (requestMessage is PumpReactionRates)
         {
-            new PumpReactionRatesResultBinarySerializer()
-                .SerializeCommand(MessageController.ProcessMessage(requestMessage, Client), Client.GetStream());
+            PumpReactionRatesResultBinarySerializer serializer = new PumpReactionRatesResultBinarySerializer();
+            serializer.SerializeCommand(MessageController.ProcessMessage(requestMessage, Client), Client.GetStream());
         }
     }
 }

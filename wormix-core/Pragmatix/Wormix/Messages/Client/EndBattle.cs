@@ -1,33 +1,27 @@
-﻿using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Structures;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Client;
 
-public struct EndBattle(int result = 0, int type = 0) : ISerializable
+public struct EndBattle() : ISerializable
 {
-    public const int ResultWinner = 1;
-    public const int ResultNotWinner = -1;
-
-    public const int TypeMyLevel = 0;
-    public const int TypeHighLevel = 1;
-    public const int TypeLowLevel = 2;
-    public const int TypePvpGame = 3;
-
-    public int Result = result;
-    public int Type = type;
-
+    public uint Result;
+    public short Type;
     public int ExpBonus;
-    
-    public int BattleId;
-    public int MissionId;
-
+    public uint BattleId;
+    public short MissionId;
     public List<WeaponStructure> Items = new();
-    public List<byte> Signature = new();
-
-    public short BanType = 0;
+    public short BanType;
     public string BanNote = "";
+    public List<byte> CollectedReagents = new();
+    public short RandomSeed;
+    public short TotalTurnsCount;
+    public int TotalDamageToPlayer;
+    public int TotalDamageToBoss;
+    public List<WeaponStructure> TotalUsedItems = new();
+    public string SessionKey = "";
 
-    public List<int> CollectedReagents = new();
     public uint GetSize()
     {
         return 0; //Not needed

@@ -2,16 +2,16 @@
 
 namespace wormix_core.Pragmatix.Wormix.PvP.Server;
 
-public struct BattleOffer()
-{
-    public string Host = "";
-    public int Port;
+//public struct BattleOffer()
+//{
+//    public string Host = "";
+//    public int Port;
     
-    public uint MapId;
-    public int Seed;
+//    public uint MapId;
+//    public int Seed;
     
-    public UserProfileStructure EnemyProfile = new();
-    public UserProfileStructure MyProfile = new();
+//    public UserProfileStructure EnemyProfile = new();
+//    public UserProfileStructure MyProfile = new();
     
-    public uint BattleId;
-}
+//    public uint BattleId;
+//}

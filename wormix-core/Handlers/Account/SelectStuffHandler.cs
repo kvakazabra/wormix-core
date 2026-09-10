@@ -1,4 +1,4 @@
-﻿using wormix_core.Controllers;
+using wormix_core.Controllers;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
@@ -13,11 +13,13 @@ public class SelectStuffHandler(ICommandSerializer requestSerializer, IGameContr
 {
     protected override void Process()
     {
-        if (requestMessage is SelectStuff selectStuffRequest)
-        {
-            ISerializable response = MessageController.ProcessMessage(selectStuffRequest, Client);
-            if (response is SelectStuffResult result)
-                new SelectStuffResultBinarySerializer().SerializeCommand(result, Client.GetStream());
-        }
+        // todo something wrong with SelectStuff
+
+        //if (requestMessage is SelectStuff selectStuffRequest)
+        //{
+        //    ISerializable response = MessageController.ProcessMessage(selectStuffRequest, Client);
+        //    if (response is SelectStuffResult result)
+        //        new SelectStuffResultBinarySerializer().SerializeCommand(result, Client.GetStream());
+        //}
     }
 }

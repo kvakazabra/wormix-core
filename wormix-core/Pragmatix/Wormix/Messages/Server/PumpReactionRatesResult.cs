@@ -1,4 +1,4 @@
-﻿using wormix_core.Extensions;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Structures;
 
@@ -11,17 +11,21 @@ public struct PumpReactionRatesResult() : ISerializable
     public uint GetSize()
     {
         return (uint)(
-            2 + PumpedFriends.Count * PumpedFriends.Sum(x => x.GetSize() + 2)); //PumpedFriends[]
+            // PumpedFriends[]
+            2 + PumpedFriends.Sum((x) => x.GetSize() + 2)
+        );
     }
 
     public void Serialize(Stream output)
     {
         BinaryWriter bw = new BinaryWriter(output);
         bw.WriteUInt16Be((ushort)PumpedFriends.Count);
-        PumpedFriends.ForEach(x =>
+
+        PumpedFriends.ForEach((x) =>
         {
             bw.WriteUInt16Be((ushort)x.GetSize());
             x.Serialize(output);
         });
     }
 }
+

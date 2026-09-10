@@ -1,8 +1,9 @@
-﻿using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Server;
 
-public struct Pong : ISerializable
+public struct Pong() : ISerializable
 {
     public uint GetSize()
     {
@@ -11,6 +12,6 @@ public struct Pong : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Message is null
+        //Not needed
     }
 }

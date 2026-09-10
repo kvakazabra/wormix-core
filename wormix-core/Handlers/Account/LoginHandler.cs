@@ -1,4 +1,4 @@
-﻿using wormix_core.Controllers;
+using wormix_core.Controllers;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
@@ -16,8 +16,9 @@ public class LoginHandler(ICommandSerializer requestSerializer, IGameController 
         if(requestMessage is Login loginRequest)
         {
             if (loginRequest.Id == 0)
+            {
                 throw new ArgumentException("Invalid login struct");
-
+            }
 
             ISerializable result = MessageController.ProcessMessage(loginRequest, Client);
             if (result is EnterAccount account) //OK

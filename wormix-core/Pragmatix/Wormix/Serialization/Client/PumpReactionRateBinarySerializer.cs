@@ -1,4 +1,4 @@
-﻿using wormix_core.Extensions;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
@@ -9,7 +9,7 @@ public class PumpReactionRateBinarySerializer : ICommandSerializer
 {
     public uint GetCommandId()
     {
-        return 83;
+        return 704;
     }
 
     public void SerializeCommand(ISerializable command, Stream output)
@@ -19,9 +19,12 @@ public class PumpReactionRateBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        PumpReactionRate result = new();
+        PumpReactionRate msg = new();
+
         BinaryReader br = new BinaryReader(input);
-        result.FriendId = br.ReadUInt32Be();
-        return result;
+        msg.FriendId = br.ReadUInt32Be();
+        msg.SessionKey = br.ReadUTF8();
+
+        return msg;
     }
 }

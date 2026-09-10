@@ -1,4 +1,4 @@
-﻿using wormix_core.Controllers;
+using wormix_core.Controllers;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Serialization.Server;
@@ -13,8 +13,8 @@ public class BuyReactionRateHandler(ICommandSerializer requestSerializer, IGameC
     {
         if (requestMessage is BuyReactionRate)
         {
-            new BuyReactionRateResultBinarySerializer()
-                .SerializeCommand(MessageController.ProcessMessage(requestMessage, Client), Client.GetStream());
+            BuyReactionRateResultBinarySerializer serializer = new BuyReactionRateResultBinarySerializer();
+            serializer.SerializeCommand(MessageController.ProcessMessage(requestMessage, Client), Client.GetStream());
         }
     }
 }

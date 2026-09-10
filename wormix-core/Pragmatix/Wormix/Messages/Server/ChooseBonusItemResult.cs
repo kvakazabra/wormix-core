@@ -1,8 +1,29 @@
-﻿namespace wormix_core.Pragmatix.Wormix.Messages.Server;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
-public struct ChooseBonusItemResult
+namespace wormix_core.Pragmatix.Wormix.Messages.Server;
+
+public struct ChooseBonusItemResult() : ISerializable
 {
-    public int Result;
+    public short Result;
     public int ItemId;
     public bool IsSecure;
+
+    public uint GetSize()
+    {
+        return (uint)(
+            // Result
+            2 +
+            // ItemId
+            4
+        );
+    }
+
+    public void Serialize(Stream output)
+    {
+        BinaryWriter bw = new BinaryWriter(output);
+        bw.WriteUInt16Be((ushort)Result);
+        bw.WriteUInt32Be((uint)ItemId);
+    }
 }
+

@@ -1,17 +1,16 @@
-﻿using wormix_core.Pragmatix.Flox.Model;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Client;
 
-public struct NeedMoney(int value = 0) : ISerializable
+public struct NeedMoney() : ISerializable
 {
-    public int Value = value;
+    public int Value;
     public int MoneyType;
-
 
     public uint GetSize()
     {
-        return 8;
+        return 0; //Not needed
     }
 
     public void Serialize(Stream output)

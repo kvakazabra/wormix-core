@@ -1,28 +1,31 @@
-﻿using wormix_core.Extensions;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
+using wormix_core.Pragmatix.Wormix.Messages.Structures;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Server;
 
-public struct SelectStuffResult : ISerializable
+public struct SelectStuffResult() : ISerializable
 {
-    public const int Success = 0;
-    public const int Error = 1;
-
-    public short Result;
-    public short StuffId;
-    
-    public bool IsSecure;
+    public List<SelectStuffResultStructure> SelectStuffResults = new();
 
     public uint GetSize()
     {
-        return 2 //Result
-               + 2; //StuffId
+        return (uint)(
+            // SelectStuffResults[]
+            2 + SelectStuffResults.Sum((x) => x.GetSize() + 2)
+        );
     }
 
     public void Serialize(Stream output)
     {
         BinaryWriter bw = new BinaryWriter(output);
-        bw.WriteUInt16Be((ushort)Result);
-        bw.WriteUInt16Be((ushort)StuffId);
+        bw.WriteUInt16Be((ushort)SelectStuffResults.Count);
+
+        SelectStuffResults.ForEach((x) =>
+        {
+            bw.WriteUInt16Be((ushort)x.GetSize());
+            x.Serialize(output);
+        });
     }
 }
+

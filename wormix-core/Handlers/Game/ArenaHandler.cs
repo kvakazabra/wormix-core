@@ -1,4 +1,4 @@
-﻿using wormix_core.Controllers;
+using wormix_core.Controllers;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
@@ -17,15 +17,21 @@ public class ArenaHandler(ICommandSerializer requestSerializer, IGameController 
         {
             ISerializable arena = MessageController.ProcessMessage(arenaRequest, Client);
             ICommandSerializer? serializer = null;
-        
+
             if (arena is ArenaResult)
+            {
                 serializer = new ArenaResultBinarySerializer();
+            }
 
             if (arena is ArenaLocked)
+            {
                 serializer = new ArenaLockedBinarySerializer();
+            }
 
             if (serializer == null)
+            {
                 throw new Exception("Can't get serializer for GetArena message");
+            }
         
             serializer.SerializeCommand(arena, Client.GetStream());
         }

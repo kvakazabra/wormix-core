@@ -1,4 +1,4 @@
-﻿using wormix_core.Controllers.Http.Attributes;
+using wormix_core.Controllers.Http.Attributes;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Server;
 using wormix_core.Session;
@@ -10,7 +10,8 @@ public class ArenaController : HttpGameController
 {
     public override ISerializable ProcessMessage(ISerializable gameSerializable, TcpSession? session)
     {
-        JObject result = PostRequest(gameSerializable, session).ToObject<JObject>()!;
+        JObject result = PostRequest(gameSerializable, session)
+            .ToObject<JObject>()!;
         switch (result["type"]?.ToString())
         {
             case "ArenaResult":
@@ -20,9 +21,9 @@ public class ArenaController : HttpGameController
             default:
                 return new ArenaLocked
                 {
-                    Delay = Int32.MaxValue,
+                    Delay = UInt32.MaxValue,
                     ErrorCode = 1,
-                    MissionId = 0
+                    CurrentMission = 0
                 };
         }
     }

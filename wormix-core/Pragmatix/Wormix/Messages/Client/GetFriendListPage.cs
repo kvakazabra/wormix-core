@@ -1,6 +1,19 @@
-﻿namespace wormix_core.Pragmatix.Wormix.Messages.Client;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
-public struct GetFriendListPage(int pageIndex = 1)
+namespace wormix_core.Pragmatix.Wormix.Messages.Client;
+
+public struct GetFriendListPage() : ISerializable
 {
-    public int PageIndex = pageIndex;
+    public int PageIndex;
+
+    public uint GetSize()
+    {
+        return 0; //Not needed
+    }
+
+    public void Serialize(Stream output)
+    {
+        //Not needed
+    }
 }

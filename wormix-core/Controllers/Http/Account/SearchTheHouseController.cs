@@ -1,4 +1,4 @@
-﻿using wormix_core.Controllers.Http.Attributes;
+using wormix_core.Controllers.Http.Attributes;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Server;
 using wormix_core.Session;
@@ -11,6 +11,7 @@ public class SearchTheHouseController : HttpGameController
     public override ISerializable ProcessMessage(ISerializable gameSerializable, TcpSession? session)
     {
         JObject result = PostRequest(gameSerializable, session).ToObject<JObject>()!;
-        return result["data"]!.ToObject<SearchTheHouseResult>();
+        return result["data"]!
+            .ToObject<SearchTheHouseResult>();
     }
 }

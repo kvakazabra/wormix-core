@@ -1,4 +1,4 @@
-﻿using wormix_core.Controllers;
+using wormix_core.Controllers;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Serialization.Server;
@@ -13,8 +13,8 @@ public class AddToGroupHandler(ICommandSerializer requestSerializer, IGameContro
     {
         if (requestMessage is AddToGroup)
         {
-            new AddToGroupResultBinarySerializer()
-                .SerializeCommand(MessageController.ProcessMessage(requestMessage, Client), Client.GetStream());
+            AddToGroupResultBinarySerializer serializer = new AddToGroupResultBinarySerializer();
+            serializer.SerializeCommand(MessageController.ProcessMessage(requestMessage, Client), Client.GetStream());
         }
     }
 }

@@ -1,14 +1,12 @@
-﻿using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Client;
 
-public struct GetArena : ISerializable
+public struct GetArena() : ISerializable
 {
-    public bool ReturnUsersProfiles;
-
     public uint GetSize()
     {
-        return 1;
+        return 0; //Not needed
     }
 
     public void Serialize(Stream output)

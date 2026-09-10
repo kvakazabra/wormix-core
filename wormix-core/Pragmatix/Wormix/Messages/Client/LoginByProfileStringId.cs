@@ -1,9 +1,25 @@
-﻿namespace wormix_core.Pragmatix.Wormix.Messages.Client;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
-public struct LoginByProfileStringId
+namespace wormix_core.Pragmatix.Wormix.Messages.Client;
+
+public struct LoginByProfileStringId() : ISerializable
 {
-    public uint Id;
-    public string AuthKey;
-    public object[] Ids;
-    public uint SocialCode;
+    public string Id = "";
+    public string ReferrerId = "";
+    public string AuthKey = "";
+    public string Version = "";
+    public List<string> Ids = new();
+    public byte SocialCode;
+    public List<string> Params = new();
+
+    public uint GetSize()
+    {
+        return 0; //Not needed
+    }
+
+    public void Serialize(Stream output)
+    {
+        //Not needed
+    }
 }

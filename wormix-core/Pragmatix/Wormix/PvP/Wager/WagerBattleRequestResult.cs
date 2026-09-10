@@ -2,21 +2,21 @@
 
 namespace wormix_core.Pragmatix.Wormix.PvP.Wager;
 
-public struct WagerBattleRequestResult()
-{
-    public string Host = "";
-    public int Port;
+//public struct WagerBattleRequestResult()
+//{
+//    public string Host = "";
+//    public int Port;
 
-    public uint MapId;
+//    public uint MapId;
 
-    public UserProfileStructure EnemyProfile = new();
-    public UserProfileStructure UserProfile = new();
+//    public UserProfileStructure EnemyProfile = new();
+//    public UserProfileStructure UserProfile = new();
 
-    public uint FirstPlayerId;
+//    public uint FirstPlayerId;
 
-    public int Seed;
+//    public int Seed;
 
-    public uint BattleId;
+//    public uint BattleId;
 
-    public List<int> ReagentsForBattle;
-}
+//    public List<int> ReagentsForBattle;
+//}

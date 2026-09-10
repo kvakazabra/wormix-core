@@ -1,4 +1,4 @@
-﻿using wormix_core.Extensions;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
@@ -19,10 +19,15 @@ public class AddToGroupBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        AddToGroup result = new();
+        AddToGroup msg = new();
+
         BinaryReader br = new BinaryReader(input);
-        result.ProfileId = br.ReadUInt32Be();
-        result.MoneyType = (short)br.ReadUInt16Be();
-        return result;
+        msg.ProfileId = (int)br.ReadUInt32Be();
+        msg.MoneyType = (short)br.ReadUInt16Be();
+        msg.TeamMemberType = (short)br.ReadUInt16Be();
+        msg.ReplaceableId = (int)br.ReadUInt32Be();
+        msg.Active = br.ReadByte() != 0;
+
+        return msg;
     }
 }

@@ -1,4 +1,4 @@
-﻿using wormix_core.Extensions;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
@@ -19,10 +19,11 @@ public class ResetParametersBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        ResetParameters result = new();
-        BinaryReader br = new BinaryReader(input);
-        result.MoneyType = (int)br.ReadUInt32Be();
-        return result;
+        ResetParameters msg = new();
 
+        BinaryReader br = new BinaryReader(input);
+        msg.MoneyType = (int)br.ReadUInt32Be();
+
+        return msg;
     }
 }

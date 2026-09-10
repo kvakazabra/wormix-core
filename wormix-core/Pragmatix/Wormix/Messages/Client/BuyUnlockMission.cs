@@ -1,13 +1,15 @@
-﻿using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Client;
 
-public struct BuyUnlockMission(short missionId = -1) : ISerializable 
+public struct BuyUnlockMission() : ISerializable
 {
-    public short MissionId = missionId;
+    public short MissionId;
+
     public uint GetSize()
     {
-        return 2;
+        return 0; //Not needed
     }
 
     public void Serialize(Stream output)

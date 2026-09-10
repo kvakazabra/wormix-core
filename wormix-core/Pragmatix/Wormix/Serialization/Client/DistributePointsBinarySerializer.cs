@@ -1,11 +1,11 @@
-﻿using wormix_core.Extensions;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
 namespace wormix_core.Pragmatix.Wormix.Serialization.Client;
 
-public class DistributePointsBinarySerializer :  ICommandSerializer
+public class DistributePointsBinarySerializer : ICommandSerializer
 {
     public uint GetCommandId()
     {
@@ -19,12 +19,12 @@ public class DistributePointsBinarySerializer :  ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        DistributePoints result = new();
-        
-        BinaryReader br = new BinaryReader(input);
-        result.Armor = (int)br.ReadUInt32Be();
-        result.Attack = (int)br.ReadUInt32Be();
+        DistributePoints msg = new();
 
-        return result;
+        BinaryReader br = new BinaryReader(input);
+        msg.Armor = (int)br.ReadUInt32Be();
+        msg.Attack = (int)br.ReadUInt32Be();
+
+        return msg;
     }
 }

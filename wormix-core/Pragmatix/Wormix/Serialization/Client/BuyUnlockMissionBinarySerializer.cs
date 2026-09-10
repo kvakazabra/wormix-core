@@ -1,4 +1,4 @@
-﻿using wormix_core.Extensions;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
@@ -19,10 +19,11 @@ public class BuyUnlockMissionBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        BuyUnlockMission result = new();
+        BuyUnlockMission msg = new();
 
         BinaryReader br = new BinaryReader(input);
-        result.MissionId = (short)br.ReadUInt16Be();
-        return result;
+        msg.MissionId = (short)br.ReadUInt16Be();
+
+        return msg;
     }
 }

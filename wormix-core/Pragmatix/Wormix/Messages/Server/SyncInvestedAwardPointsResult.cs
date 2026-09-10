@@ -1,6 +1,24 @@
-﻿namespace wormix_core.Pragmatix.Wormix.Messages.Server;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
-public struct SyncInvestedAwardPointsResult
+namespace wormix_core.Pragmatix.Wormix.Messages.Server;
+
+public struct SyncInvestedAwardPointsResult() : ISerializable
 {
-    public int Points;
+    public byte Points;
+
+    public uint GetSize()
+    {
+        return (uint)(
+            // Points
+            1
+        );
+    }
+
+    public void Serialize(Stream output)
+    {
+        BinaryWriter bw = new BinaryWriter(output);
+        bw.Write(Points);
+    }
 }
+

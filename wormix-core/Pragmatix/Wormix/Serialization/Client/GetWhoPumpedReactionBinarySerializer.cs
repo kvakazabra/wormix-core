@@ -1,4 +1,4 @@
-﻿using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
+using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
@@ -18,10 +18,11 @@ public class GetWhoPumpedReactionBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        GetWhoPumpedReaction result = new();
-        BinaryReader br = new BinaryReader(input);
-        result.TodayOnly = br.ReadBoolean();
+        GetWhoPumpedReaction msg = new();
 
-        return result;
+        BinaryReader br = new BinaryReader(input);
+        msg.TodayOnly = br.ReadByte() != 0;
+
+        return msg;
     }
 }

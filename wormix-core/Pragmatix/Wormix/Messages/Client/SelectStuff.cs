@@ -1,13 +1,16 @@
-﻿using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
+using wormix_core.Pragmatix.Wormix.Messages.Structures;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Client;
 
-public struct SelectStuff(short stuffId = 0) : ISerializable
+public struct SelectStuff() : ISerializable
 {
-    public short StuffId = stuffId;
+    public List<SelectStuffStructure> SelectStuffs = new();
+
     public uint GetSize()
     {
-        return 2;
+        return 0; //Not needed
     }
 
     public void Serialize(Stream output)

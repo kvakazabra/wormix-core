@@ -1,5 +1,6 @@
-﻿using wormix_core.Controllers.Http.Attributes;
+using wormix_core.Controllers.Http.Attributes;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
+using wormix_core.Pragmatix.Wormix.Messages.Server;
 using wormix_core.Session;
 
 namespace wormix_core.Controllers.Http.Game;
@@ -9,7 +10,8 @@ public class EndBattleController : HttpGameController
 {
     public override ISerializable ProcessMessage(ISerializable gameSerializable, TcpSession? session)
     {
-       PostRequest(gameSerializable, session);
-        return null!;
+        return PostRequest(gameSerializable, session)
+            .ToObject<JObject>()?["data"]?
+            .ToObject<EndBattleResult>()!;
     }
 }

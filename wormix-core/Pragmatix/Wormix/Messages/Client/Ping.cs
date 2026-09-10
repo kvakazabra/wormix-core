@@ -1,13 +1,12 @@
-﻿using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Client;
 
-public struct Ping(uint friendId = 0) : ISerializable
+public struct Ping() : ISerializable
 {
-    public uint FriendId = friendId;
     public uint GetSize()
     {
-        return 0;
+        return 0; //Not needed
     }
 
     public void Serialize(Stream output)

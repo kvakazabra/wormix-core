@@ -1,4 +1,4 @@
-﻿using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Server;
 using wormix_core.Session;
 
@@ -9,7 +9,6 @@ public class NeedMoneyController : StaticDataController
 {
     public override ISerializable ProcessMessage(ISerializable gameSerializable, TcpSession? session)
     {
-        //Simple (not needed)
         return new NeedMoneyResult
         {
             Result = 3,

@@ -1,19 +1,21 @@
-﻿using wormix_core.Extensions;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Structures;
 
-public struct WeaponStructure(uint id = 0, int count = 0) : ISerializable
+public struct WeaponStructure : ISerializable
 {
-    public uint Id = id;
-    public int Count = count;
-
-
+    public uint Id;
+    public int Count;
+    
     public uint GetSize()
     {
-        return
-            4 + //Id
-            4; // Count
+        return (uint)(
+            // Id
+            4 +
+            // Count
+            4
+        );
     }
 
     public void Serialize(Stream output)
@@ -23,3 +25,4 @@ public struct WeaponStructure(uint id = 0, int count = 0) : ISerializable
         bw.WriteUInt32Be((uint)Count);
     }
 }
+

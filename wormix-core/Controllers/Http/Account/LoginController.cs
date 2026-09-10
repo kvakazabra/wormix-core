@@ -1,4 +1,4 @@
-﻿using wormix_core.Controllers.Http.Attributes;
+using wormix_core.Controllers.Http.Attributes;
 using wormix_core.Facades;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Server;
@@ -28,7 +28,7 @@ public class LoginController : HttpGameController
         
         return new LoginError
         {
-            Result = LoginError.InternalServerError
+            Code = 0 /* under maintenance */
         };
     }
 }

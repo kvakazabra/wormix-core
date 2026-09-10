@@ -1,16 +1,15 @@
-﻿using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
+using wormix_core.Extensions;
+using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 
 namespace wormix_core.Pragmatix.Wormix.Messages.Client;
 
-public struct ResetParameters(int moneyType = -1) : ISerializable
+public struct ResetParameters() : ISerializable
 {
-    public const int RealMoney = 0;
-    public const int Money = 1;
+    public int MoneyType;
 
-    public int MoneyType = moneyType;
     public uint GetSize()
     {
-        return 4; //Money type
+        return 0; //Not needed
     }
 
     public void Serialize(Stream output)

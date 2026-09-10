@@ -1,4 +1,4 @@
-﻿using wormix_core.Extensions;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
@@ -19,9 +19,11 @@ public class WipeProfileBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        WipeProfile result = new();
+        WipeProfile msg = new();
+
         BinaryReader br = new BinaryReader(input);
-        result.ConfirmCode = br.ReadUTF8();
-        return result;
+        msg.ConfirmCode = br.ReadUTF8();
+
+        return msg;
     }
 }

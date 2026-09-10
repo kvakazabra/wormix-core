@@ -1,4 +1,4 @@
-﻿using wormix_core.Extensions;
+using wormix_core.Extensions;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
@@ -19,11 +19,11 @@ public class UpgradeWeaponBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        UpgradeWeapon upgradeWeapon = new();
-        
+        UpgradeWeapon msg = new();
+
         BinaryReader br = new BinaryReader(input);
-        upgradeWeapon.RecipeId = (short)br.ReadUInt16Be();
-        
-        return upgradeWeapon;
+        msg.RecipeId = (short)br.ReadUInt16Be();
+
+        return msg;
     }
 }
