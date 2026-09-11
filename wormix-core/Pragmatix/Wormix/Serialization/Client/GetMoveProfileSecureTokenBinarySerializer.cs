@@ -6,4 +6,6 @@ namespace wormix_core.Pragmatix.Wormix.Serialization.Client;
 public class GetMoveProfileSecureTokenBinarySerializer : AbstractBinaryCommandSerializer<GetMoveProfileSecureToken>
 {
     protected override uint CommandId => 139;
+
+    protected override bool IsSecure => true;
 }

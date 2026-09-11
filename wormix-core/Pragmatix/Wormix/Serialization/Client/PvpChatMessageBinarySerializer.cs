@@ -6,4 +6,6 @@ namespace wormix_core.Pragmatix.Wormix.Serialization.Client;
 public class PvpChatMessageBinarySerializer : AbstractBinaryCommandSerializer<PvpChatMessage>
 {
     protected override uint CommandId => 17;
+
+    protected override bool IsSecure => true;
 }

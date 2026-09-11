@@ -6,4 +6,6 @@ namespace wormix_core.Pragmatix.Wormix.Serialization.Client;
 public class SendWipeConfirmCodeBinarySerializer : AbstractBinaryCommandSerializer<SendWipeConfirmCode>
 {
     protected override uint CommandId => 52;
+
+    protected override bool IsSecure => true;
 }

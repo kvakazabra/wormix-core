@@ -6,4 +6,6 @@ namespace wormix_core.Pragmatix.Wormix.Serialization.Client;
 public class SyncInvestedAwardPointsBinarySerializer : AbstractBinaryCommandSerializer<SyncInvestedAwardPoints>
 {
     protected override uint CommandId => 57;
+
+    protected override bool IsSecure => true;
 }

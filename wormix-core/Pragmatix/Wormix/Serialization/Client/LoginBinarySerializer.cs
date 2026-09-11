@@ -6,4 +6,6 @@ namespace wormix_core.Pragmatix.Wormix.Serialization.Client;
 public class LoginBinarySerializer : AbstractBinaryCommandSerializer<Login>
 {
     protected override uint CommandId => 1;
+
+    protected override bool IsSecure => true;
 }

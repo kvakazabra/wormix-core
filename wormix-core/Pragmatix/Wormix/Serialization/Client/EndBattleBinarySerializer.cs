@@ -6,4 +6,6 @@ namespace wormix_core.Pragmatix.Wormix.Serialization.Client;
 public class EndBattleBinarySerializer : AbstractBinaryCommandSerializer<EndBattle>
 {
     protected override uint CommandId => 84;
+
+    protected override bool IsSecure => true;
 }

@@ -6,4 +6,6 @@ namespace wormix_core.Pragmatix.Wormix.Serialization.Client;
 public class EndTurnBinarySerializer : AbstractBinaryCommandSerializer<EndTurn>
 {
     protected override uint CommandId => 120;
+
+    protected override bool IsSecure => true;
 }

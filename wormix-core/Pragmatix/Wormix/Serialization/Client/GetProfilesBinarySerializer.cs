@@ -6,4 +6,6 @@ namespace wormix_core.Pragmatix.Wormix.Serialization.Client;
 public class GetProfilesBinarySerializer : AbstractBinaryCommandSerializer<GetProfiles>
 {
     protected override uint CommandId => 5;
+
+    protected override bool IsSecure => true;
 }

@@ -6,4 +6,6 @@ namespace wormix_core.Pragmatix.Wormix.Serialization.Client;
 public class PumpReactionRateBinarySerializer : AbstractBinaryCommandSerializer<PumpReactionRate>
 {
     protected override uint CommandId => 704;
+
+    protected override bool IsSecure => true;
 }

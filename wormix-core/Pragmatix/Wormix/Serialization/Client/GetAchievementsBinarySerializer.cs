@@ -6,4 +6,6 @@ namespace wormix_core.Pragmatix.Wormix.Serialization.Client;
 public class GetAchievementsBinarySerializer : AbstractBinaryCommandSerializer<GetAchievements>
 {
     protected override uint CommandId => 3002;
+
+    protected override bool IsSecure => true;
 }

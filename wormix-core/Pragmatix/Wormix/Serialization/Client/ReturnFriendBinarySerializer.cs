@@ -6,4 +6,6 @@ namespace wormix_core.Pragmatix.Wormix.Serialization.Client;
 public class ReturnFriendBinarySerializer : AbstractBinaryCommandSerializer<ReturnFriend>
 {
     protected override uint CommandId => 90;
+
+    protected override bool IsSecure => true;
 }

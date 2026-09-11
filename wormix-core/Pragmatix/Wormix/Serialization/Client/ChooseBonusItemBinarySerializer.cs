@@ -6,4 +6,6 @@ namespace wormix_core.Pragmatix.Wormix.Serialization.Client;
 public class ChooseBonusItemBinarySerializer : AbstractBinaryCommandSerializer<ChooseBonusItem>
 {
     protected override uint CommandId => 3005;
+
+    protected override bool IsSecure => true;
 }

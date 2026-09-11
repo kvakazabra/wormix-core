@@ -6,4 +6,6 @@ namespace wormix_core.Pragmatix.Wormix.Serialization.Client;
 public class IncreaseAchievementsBinarySerializer : AbstractBinaryCommandSerializer<IncreaseAchievements>
 {
     protected override uint CommandId => 3003;
+
+    protected override bool IsSecure => true;
 }
