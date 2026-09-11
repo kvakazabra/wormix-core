@@ -71,7 +71,7 @@ public abstract class AbstractBinaryCommandSerializer<TCommand> : ICommandSerial
             throw new InvalidOperationException("Trying to deserialize server message on a server");
         }
 
-        if (header.GetCommandId() == CommandId)
+        if (header.GetCommandId() != CommandId)
         {
             throw new InvalidDataException(
                 $"Serializer {GetType().Name} (commandId = {CommandId}) " +
