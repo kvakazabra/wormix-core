@@ -28,5 +28,9 @@ public struct AssembleEquipResult() : ISerializable
         bw.WriteUInt16Be((ushort)FamilyId);
         bw.WriteUInt16Be((ushort)Result);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

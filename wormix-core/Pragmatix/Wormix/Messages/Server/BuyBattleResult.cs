@@ -20,5 +20,9 @@ public struct BuyBattleResult() : ISerializable
         BinaryWriter bw = new BinaryWriter(output);
         bw.WriteUInt16Be((ushort)Result);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

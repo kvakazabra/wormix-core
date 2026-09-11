@@ -20,10 +20,7 @@ public class UpgradeWeaponBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         UpgradeWeapon msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.RecipeId = (short)br.ReadUInt16Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

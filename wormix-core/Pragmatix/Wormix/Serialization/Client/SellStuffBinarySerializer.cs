@@ -20,12 +20,7 @@ public class SellStuffBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         SellStuff msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        ushort n = br.ReadUInt16Be();
-        for (int i = 0; i < n; i++)
-            msg.StuffIds.Add((int)br.ReadUInt32Be());
-
+        msg.Deserialize(input);
         return msg;
     }
 }

@@ -20,14 +20,7 @@ public class PvpChatMessageBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         PvpChatMessage msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.PlayerNum = br.ReadByte();
-        msg.Action = (short)br.ReadUInt16Be();
-        msg.Message = br.ReadUTF8();
-        msg.BattleId = br.ReadUInt32Be();
-        msg.IsTeamMsg = br.ReadByte() != 0;
-
+        msg.Deserialize(input);
         return msg;
     }
 }

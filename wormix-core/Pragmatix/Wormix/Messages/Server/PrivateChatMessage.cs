@@ -29,5 +29,9 @@ public struct PrivateChatMessage() : ISerializable
         bw.WriteUTF8(Msg);
         bw.Write(PredefinedMsgType);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

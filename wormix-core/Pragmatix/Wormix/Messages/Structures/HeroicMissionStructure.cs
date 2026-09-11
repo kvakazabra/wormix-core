@@ -25,5 +25,9 @@ public struct HeroicMissionStructure() : ISerializable
         BossIds.ForEach((x) => bw.WriteUInt16Be((ushort)x));
         bw.WriteUInt32Be(MapId);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

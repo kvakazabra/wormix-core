@@ -19,10 +19,7 @@ public class GetWhoPumpedReactionBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         GetWhoPumpedReaction msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.TodayOnly = br.ReadByte() != 0;
-
+        msg.Deserialize(input);
         return msg;
     }
 }

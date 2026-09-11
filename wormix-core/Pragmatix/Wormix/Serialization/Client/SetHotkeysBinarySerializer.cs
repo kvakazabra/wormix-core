@@ -20,12 +20,7 @@ public class SetHotkeysBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         SetHotkeys msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        ushort n = br.ReadUInt16Be();
-        for (int i = 0; i < n; i++)
-            msg.Hotkeys.Add((short)br.ReadUInt16Be());
-
+        msg.Deserialize(input);
         return msg;
     }
 }

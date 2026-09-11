@@ -29,5 +29,9 @@ public struct BuyGroupSlotResult() : ISerializable
         bw.Write(NewSlotsIndex);
         bw.WriteUTF8(SessionKey);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

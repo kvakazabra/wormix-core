@@ -20,12 +20,7 @@ public class BuyRenameCharBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         BuyRenameChar msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.TeamMemberId = (int)br.ReadUInt32Be();
-        msg.Name = br.ReadUTF8();
-        msg.MoneyType = (short)br.ReadUInt16Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

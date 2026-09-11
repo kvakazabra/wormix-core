@@ -52,5 +52,9 @@ public struct VipSubscriptionResponse() : ISerializable
         bw.Write(PendingCancel);
         bw.WriteUInt16Be((ushort)CancelReason);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

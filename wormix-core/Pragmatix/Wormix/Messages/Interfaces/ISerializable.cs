@@ -4,4 +4,5 @@ public interface ISerializable
 {
     uint GetSize();
     void Serialize(Stream output);
+    void Deserialize(Stream input);
 }

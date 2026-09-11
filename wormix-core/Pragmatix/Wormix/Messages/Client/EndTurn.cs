@@ -21,6 +21,50 @@ public struct EndTurn() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        MissionId = (short)br.ReadUInt16Be();
+        BattleId = br.ReadUInt32Be();
+        RandomSeed = (short)br.ReadUInt16Be();
+        br.ReadUInt16Be();
+        Turn.TurnNum = (short)br.ReadUInt16Be();
+        Turn.IsPlayerTurn = br.ReadByte() != 0;
+        Turn.EndTime = (int)br.ReadUInt32Be();
+        Turn.DamageToPlayer = (int)br.ReadUInt32Be();
+        Turn.DamageToBoss = (int)br.ReadUInt32Be();
+        ushort itemsCount = br.ReadUInt16Be();
+        for (int i = 0; i < itemsCount; i++)
+        {
+            br.ReadUInt16Be();
+            WeaponStructure item = new();
+            item.Id = br.ReadUInt32Be();
+            item.Count = (int)br.ReadUInt32Be();
+            Turn.Items.Add(item);
+        }
+        ushort deathsCount = br.ReadUInt16Be();
+        for (int i = 0; i < deathsCount; i++)
+        {
+            br.ReadUInt16Be();
+            BossWormStructure death = new();
+            death.IsPlayerTeam = br.ReadByte() != 0;
+            death.Hp = (int)br.ReadUInt32Be();
+            Turn.Deaths.Add(death);
+        }
+        ushort birthsCount = br.ReadUInt16Be();
+        for (int i = 0; i < birthsCount; i++)
+        {
+            br.ReadUInt16Be();
+            BossWormStructure birth = new();
+            birth.IsPlayerTeam = br.ReadByte() != 0;
+            birth.Hp = (int)br.ReadUInt32Be();
+            Turn.Births.Add(birth);
+        }
+        BanType = (short)br.ReadUInt16Be();
+        BanNote = br.ReadUTF8();
+        SessionKey = br.ReadUTF8();
     }
 }

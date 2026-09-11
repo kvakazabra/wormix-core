@@ -18,6 +18,8 @@ public class GetDailyBonusBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        return new GetDailyBonus();
+        GetDailyBonus msg = new();
+        msg.Deserialize(input);
+        return msg;
     }
 }

@@ -20,7 +20,7 @@ public class BuyMercenariesTicketBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         BuyMercenariesTicket msg = new();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

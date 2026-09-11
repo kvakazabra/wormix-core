@@ -32,5 +32,9 @@ public struct SearchTheHouseResult() : ISerializable
         bw.Write(AvailableSearchKeys);
         bw.WriteUInt32Be(FriendId);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

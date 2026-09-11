@@ -20,12 +20,7 @@ public class SetMercenariesTeamMembersBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         SetMercenariesTeamMembers msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        ushort n = br.ReadUInt16Be();
-        for (int i = 0; i < n; i++)
-            msg.Members.Add(br.ReadByte());
-
+        msg.Deserialize(input);
         return msg;
     }
 }

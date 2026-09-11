@@ -20,11 +20,7 @@ public class ToggleTeamMemberBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         ToggleTeamMember msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.TeamMemberId = (int)br.ReadUInt32Be();
-        msg.Active = br.ReadByte() != 0;
-
+        msg.Deserialize(input);
         return msg;
     }
 }

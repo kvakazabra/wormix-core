@@ -20,10 +20,7 @@ public class WipeProfileBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         WipeProfile msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.ConfirmCode = br.ReadUTF8();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

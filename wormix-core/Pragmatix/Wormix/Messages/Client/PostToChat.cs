@@ -16,6 +16,14 @@ public struct PostToChat() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        Action = (short)br.ReadUInt16Be();
+        ProfileName = br.ReadUTF8();
+        Message = br.ReadUTF8();
     }
 }

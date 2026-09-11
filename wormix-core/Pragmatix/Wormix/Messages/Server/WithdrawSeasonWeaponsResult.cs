@@ -53,5 +53,9 @@ public struct WithdrawSeasonWeaponsResult() : ISerializable
         bw.WriteUInt16Be((ushort)CurrentSeasonStuff.Count);
         CurrentSeasonStuff.ForEach((x) => bw.WriteUInt32Be((uint)x));
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

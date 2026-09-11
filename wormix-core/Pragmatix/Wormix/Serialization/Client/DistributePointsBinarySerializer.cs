@@ -20,11 +20,7 @@ public class DistributePointsBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         DistributePoints msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.Armor = (int)br.ReadUInt32Be();
-        msg.Attack = (int)br.ReadUInt32Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

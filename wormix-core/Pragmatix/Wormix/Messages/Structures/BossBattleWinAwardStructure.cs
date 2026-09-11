@@ -38,5 +38,9 @@ public struct BossBattleWinAwardStructure() : ISerializable
             el.Serialize(output);
         });
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

@@ -92,5 +92,9 @@ public struct RatingProfileStructure : ISerializable
         bw.WriteUInt32Be((uint)OldPlace);
         bw.Write((byte)SocialNetId);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

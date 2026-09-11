@@ -27,5 +27,9 @@ public struct AwardedFriendsComeback() : ISerializable
         bw.WriteUInt16Be((ushort)FriendsIdString.Count);
         FriendsIdString.ForEach((x) => bw.WriteUTF8(x));
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

@@ -20,10 +20,7 @@ public class DowngradeWeaponBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         DowngradeWeapon msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.RecipeId = (short)br.ReadUInt16Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

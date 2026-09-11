@@ -63,5 +63,9 @@ public struct ProfileExtraInfoResponse() : ISerializable
 
         bw.Write(ActiveBackpackConf);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

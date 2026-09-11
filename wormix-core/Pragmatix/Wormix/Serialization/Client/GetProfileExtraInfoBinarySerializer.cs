@@ -20,10 +20,7 @@ public class GetProfileExtraInfoBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         GetProfileExtraInfo msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.ProfileId = br.ReadUInt32Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

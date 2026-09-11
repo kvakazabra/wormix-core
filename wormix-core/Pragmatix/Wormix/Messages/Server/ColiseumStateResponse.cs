@@ -76,5 +76,9 @@ public struct ColiseumStateResponse() : ISerializable
         bw.WriteUInt32Be((uint)RegenerateCount);
         bw.WriteUInt32Be((uint)ProfileId);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

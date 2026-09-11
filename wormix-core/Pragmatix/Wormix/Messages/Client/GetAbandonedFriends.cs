@@ -14,6 +14,12 @@ public struct GetAbandonedFriends() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        Page = (int)br.ReadUInt32Be();
     }
 }

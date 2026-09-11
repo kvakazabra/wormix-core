@@ -20,15 +20,7 @@ public class SetCookiesBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         SetCookies msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        ushort n1 = br.ReadUInt16Be();
-        for (int i = 0; i < n1; i++)
-            msg.Names.Add(br.ReadUTF8());
-        ushort n2 = br.ReadUInt16Be();
-        for (int i = 0; i < n2; i++)
-            msg.Values.Add(br.ReadUTF8());
-
+        msg.Deserialize(input);
         return msg;
     }
 }

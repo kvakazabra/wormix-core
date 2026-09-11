@@ -11,6 +11,11 @@ public struct ColliseumInterruptSeries() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        throw new NotImplementedException();
     }
 }

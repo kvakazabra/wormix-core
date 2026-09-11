@@ -28,5 +28,9 @@ public struct ArenaLocked() : ISerializable
         bw.WriteUInt16Be((ushort)CurrentMission);
         bw.WriteUInt16Be((ushort)ErrorCode);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

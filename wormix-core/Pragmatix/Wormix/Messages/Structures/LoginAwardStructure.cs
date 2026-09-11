@@ -40,5 +40,9 @@ public struct LoginAwardStructure : ISerializable
         }
         bw.WriteUTF8(Attach);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

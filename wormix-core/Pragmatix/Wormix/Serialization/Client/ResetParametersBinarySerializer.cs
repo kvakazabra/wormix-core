@@ -20,10 +20,7 @@ public class ResetParametersBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         ResetParameters msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.MoneyType = (int)br.ReadUInt32Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

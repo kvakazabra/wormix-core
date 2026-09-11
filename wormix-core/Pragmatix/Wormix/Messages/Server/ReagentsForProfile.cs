@@ -21,5 +21,9 @@ public struct ReagentsForProfile() : ISerializable
         bw.WriteUInt16Be((ushort)Reagents.Count);
         Reagents.ForEach((x) => bw.WriteUInt32Be((uint)x));
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

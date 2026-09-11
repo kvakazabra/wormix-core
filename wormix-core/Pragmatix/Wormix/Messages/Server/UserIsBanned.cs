@@ -28,5 +28,9 @@ public struct UserIsBanned() : ISerializable
         bw.WriteUInt32Be(EndDate);
         bw.WriteUInt32Be(ProfileId);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

@@ -32,5 +32,9 @@ public struct QuestProgressStructure : ISerializable
         bw.WriteUTF8(Progress);
         bw.Write((byte)(Rewarded ? 1 : 0));
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

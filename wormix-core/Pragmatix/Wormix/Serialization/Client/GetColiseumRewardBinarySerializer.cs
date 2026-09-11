@@ -18,6 +18,8 @@ public class GetColiseumRewardBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        return new GetColiseumReward();
+        GetColiseumReward msg = new();
+        msg.Deserialize(input);
+        return msg;
     }
 }

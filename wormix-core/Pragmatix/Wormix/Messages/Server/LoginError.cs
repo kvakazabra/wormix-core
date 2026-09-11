@@ -21,5 +21,9 @@ public struct LoginError() : ISerializable
 
         bw.WriteUInt16Be((ushort)Code);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

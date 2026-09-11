@@ -57,5 +57,9 @@ public struct ChatMessage : ISerializable
         bw.WriteUTF8(Message);
         bw.WriteUTF8(Params);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

@@ -20,12 +20,7 @@ public class PostToChatBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         PostToChat msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.Action = (short)br.ReadUInt16Be();
-        msg.ProfileName = br.ReadUTF8();
-        msg.Message = br.ReadUTF8();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

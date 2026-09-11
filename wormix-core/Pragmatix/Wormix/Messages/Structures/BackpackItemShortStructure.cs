@@ -24,5 +24,9 @@ public struct BackpackItemShortStructure : ISerializable
         bw.WriteUInt16Be((ushort)WeaponId);
         bw.WriteUInt16Be((ushort)Count);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

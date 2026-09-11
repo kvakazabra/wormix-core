@@ -20,10 +20,7 @@ public class AddGladiatorTeamMemberBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         AddGladiatorTeamMember msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.TeamMemberIndex = (int)br.ReadUInt32Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

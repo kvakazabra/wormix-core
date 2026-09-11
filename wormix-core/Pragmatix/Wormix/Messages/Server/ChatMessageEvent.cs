@@ -31,5 +31,9 @@ public struct ChatMessageEvent() : ISerializable
             Message.Value.Serialize(output);
         }
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

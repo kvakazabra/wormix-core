@@ -26,5 +26,9 @@ public struct StartBattleResult() : ISerializable
         bw.WriteUInt16Be((ushort)ReagentsForBattle.Count);
         ReagentsForBattle.ForEach((x) => bw.Write(x));
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

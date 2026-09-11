@@ -20,13 +20,7 @@ public class PumpReactionRatesBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         PumpReactionRates msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        ushort n = br.ReadUInt16Be();
-        for (int i = 0; i < n; i++)
-            msg.FriendIds.Add(br.ReadUInt32Be());
-        msg.SessionKey = br.ReadUTF8();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

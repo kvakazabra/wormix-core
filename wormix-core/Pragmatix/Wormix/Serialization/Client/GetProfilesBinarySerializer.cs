@@ -20,13 +20,7 @@ public class GetProfilesBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         GetProfiles msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.SessionKey = br.ReadUTF8();
-        ushort n = br.ReadUInt16Be();
-        for (int i = 0; i < n; i++)
-            msg.Ids.Add(br.ReadUTF8());
-
+        msg.Deserialize(input);
         return msg;
     }
 }

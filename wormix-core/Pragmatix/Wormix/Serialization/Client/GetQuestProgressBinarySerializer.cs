@@ -18,6 +18,8 @@ public class GetQuestProgressBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        return new GetQuestProgress();
+        GetQuestProgress msg = new();
+        msg.Deserialize(input);
+        return msg;
     }
 }

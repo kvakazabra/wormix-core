@@ -18,6 +18,16 @@ public struct PvpChatMessage() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        PlayerNum = br.ReadByte();
+        Action = (short)br.ReadUInt16Be();
+        Message = br.ReadUTF8();
+        BattleId = br.ReadUInt32Be();
+        IsTeamMsg = br.ReadByte() != 0;
     }
 }

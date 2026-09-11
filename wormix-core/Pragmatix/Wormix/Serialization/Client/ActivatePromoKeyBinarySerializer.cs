@@ -20,10 +20,7 @@ public class ActivatePromoKeyBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         ActivatePromoKey msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.Key = br.ReadUTF8();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

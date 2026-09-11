@@ -46,5 +46,9 @@ public struct WhoPumpedReactionResult() : ISerializable
             x.Serialize(output);
         });
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

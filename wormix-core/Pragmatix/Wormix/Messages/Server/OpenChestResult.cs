@@ -71,5 +71,9 @@ public struct OpenChestResult() : ISerializable
         bw.WriteUInt32Be((uint)BossToken);
         bw.WriteUInt32Be((uint)WagerToken);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

@@ -25,5 +25,9 @@ public struct NeedMoneyResult() : ISerializable
         bw.WriteUInt32Be((uint)Value);
         bw.WriteUInt16Be((ushort)Result);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

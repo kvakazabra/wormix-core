@@ -20,11 +20,7 @@ public class ExecuteSpecialDealBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         ExecuteSpecialDeal msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.ItemId = (short)br.ReadUInt16Be();
-        msg.RubyPrice = br.ReadByte();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

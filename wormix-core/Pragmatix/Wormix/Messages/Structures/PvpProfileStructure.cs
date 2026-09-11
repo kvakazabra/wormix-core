@@ -147,5 +147,9 @@ public struct PvpProfileStructure() : ISerializable
         bw.WriteUInt16Be((ushort)SeasonsBestRank.Count);
         SeasonsBestRank.ForEach((b) => bw.Write(b));
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

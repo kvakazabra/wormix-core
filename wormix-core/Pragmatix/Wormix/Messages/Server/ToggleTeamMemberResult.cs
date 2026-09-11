@@ -24,5 +24,9 @@ public struct ToggleTeamMemberResult() : ISerializable
         bw.WriteUInt16Be((ushort)Result);
         bw.WriteUInt32Be((uint)TeamMemberId);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

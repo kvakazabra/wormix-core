@@ -20,12 +20,7 @@ public class CheatDetectedBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         CheatDetected msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.SessionKey = br.ReadUTF8();
-        msg.BanType = (short)br.ReadUInt16Be();
-        msg.BanNote = br.ReadUTF8();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

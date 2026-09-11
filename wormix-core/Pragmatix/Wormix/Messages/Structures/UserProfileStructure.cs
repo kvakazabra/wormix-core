@@ -107,5 +107,9 @@ public struct UserProfileStructure() : ISerializable
         bw.WriteUInt32Be((uint)RankPoints);
         bw.Write((byte)BestRank);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

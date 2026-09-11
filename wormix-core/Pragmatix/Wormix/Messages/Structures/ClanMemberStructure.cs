@@ -51,5 +51,9 @@ public struct ClanMemberStructure() : ISerializable
         bw.WriteUInt16Be((ushort)ReviewState);
         bw.WriteUInt32Be((uint)PrevSeasonTopPlace);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

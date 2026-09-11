@@ -18,6 +18,8 @@ public class GetSpecialDealBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        return new GetSpecialDeal();
+        GetSpecialDeal msg = new();
+        msg.Deserialize(input);
+        return msg;
     }
 }

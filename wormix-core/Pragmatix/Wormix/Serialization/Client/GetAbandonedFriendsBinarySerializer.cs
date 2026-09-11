@@ -20,10 +20,7 @@ public class GetAbandonedFriendsBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         GetAbandonedFriends msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.Page = (int)br.ReadUInt32Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

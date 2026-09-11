@@ -20,7 +20,7 @@ public class BuyColiseumTicketBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         BuyColiseumTicket msg = new();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

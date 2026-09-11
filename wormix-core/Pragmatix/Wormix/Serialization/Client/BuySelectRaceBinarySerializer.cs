@@ -20,11 +20,7 @@ public class BuySelectRaceBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         BuySelectRace msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.RaceId = (short)br.ReadUInt16Be();
-        msg.SkinId = br.ReadByte();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

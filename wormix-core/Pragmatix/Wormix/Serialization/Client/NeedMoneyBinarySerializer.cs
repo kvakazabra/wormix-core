@@ -20,11 +20,7 @@ public class NeedMoneyBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         NeedMoney msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.Value = (int)br.ReadUInt32Be();
-        msg.MoneyType = (int)br.ReadUInt32Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

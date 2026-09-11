@@ -20,12 +20,7 @@ public class SendWipeConfirmCodeBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         SendWipeConfirmCode msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.Level = (int)br.ReadUInt32Be();
-        msg.Experience = (int)br.ReadUInt32Be();
-        msg.Rating = (int)br.ReadUInt32Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

@@ -20,12 +20,7 @@ public class SearchTheHouseBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         SearchTheHouse msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.SessionKey = br.ReadUTF8();
-        msg.FriendId = br.ReadUInt32Be();
-        msg.KeyNum = br.ReadByte();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

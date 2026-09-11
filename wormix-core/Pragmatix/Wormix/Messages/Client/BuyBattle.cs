@@ -15,6 +15,13 @@ public struct BuyBattle() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        MoneyType = (int)br.ReadUInt32Be();
+        Bulk = br.ReadByte() != 0;
     }
 }

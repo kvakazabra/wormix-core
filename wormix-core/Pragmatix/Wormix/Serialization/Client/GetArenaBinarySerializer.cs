@@ -18,6 +18,8 @@ public class GetArenaBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        return new GetArena();
+        GetArena msg = new();
+        msg.Deserialize(input);
+        return msg;
     }
 }

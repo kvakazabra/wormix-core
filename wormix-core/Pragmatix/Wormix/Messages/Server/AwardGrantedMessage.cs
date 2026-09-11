@@ -35,5 +35,9 @@ public struct AwardGrantedMessage() : ISerializable
         bw.WriteUInt16Be((ushort)AwardType);
         bw.WriteUTF8(Attach);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

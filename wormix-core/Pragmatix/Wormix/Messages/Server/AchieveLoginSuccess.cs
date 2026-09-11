@@ -25,5 +25,9 @@ public struct AchieveLoginSuccess() : ISerializable
         bw.WriteUTF8(SessionId);
         bw.WriteUInt32Be(LoginTime);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

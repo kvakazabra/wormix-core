@@ -20,6 +20,7 @@ public class PingBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         Ping msg = new();
+        msg.Deserialize(input);
         return msg;
     }
 }

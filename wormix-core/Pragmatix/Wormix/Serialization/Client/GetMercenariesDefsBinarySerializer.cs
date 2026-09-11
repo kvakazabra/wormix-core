@@ -18,6 +18,8 @@ public class GetMercenariesDefsBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        return new GetMercenariesDefs();
+        GetMercenariesDefs msg = new();
+        msg.Deserialize(input);
+        return msg;
     }
 }

@@ -36,5 +36,9 @@ public struct GladiatorUnitStructure : ISerializable
         bw.WriteUInt16Be((ushort)HatId);
         bw.WriteUInt16Be((ushort)ArtifactId);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

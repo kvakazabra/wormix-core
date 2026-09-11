@@ -32,5 +32,9 @@ public struct GetDailyBonusResult() : ISerializable
             x.Serialize(output);
         });
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

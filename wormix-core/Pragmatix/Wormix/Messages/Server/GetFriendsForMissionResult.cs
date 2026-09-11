@@ -33,5 +33,9 @@ public struct GetFriendsForMissionResult() : ISerializable
         bw.WriteUInt16Be((ushort)States.Count);
         States.ForEach((x) => bw.WriteUInt16Be((ushort)x));
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

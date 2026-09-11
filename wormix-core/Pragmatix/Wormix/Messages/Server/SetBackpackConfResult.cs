@@ -36,5 +36,9 @@ public struct SetBackpackConfResult() : ISerializable
 
         bw.Write(ActiveConfig);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

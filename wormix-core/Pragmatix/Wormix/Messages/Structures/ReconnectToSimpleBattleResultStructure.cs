@@ -32,5 +32,9 @@ public struct ReconnectToSimpleBattleResultStructure : ISerializable
         bw.WriteUInt16Be((ushort)MissionId);
         bw.WriteUInt16Be((ushort)LastTurnNum);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

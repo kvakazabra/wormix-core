@@ -18,6 +18,22 @@ public struct IncreaseAchievements() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        SessionId = br.ReadUTF8();
+        ushort n = br.ReadUInt16Be();
+        for (int i = 0; i < n; i++)
+            AchievementsIndex.Add((int)br.ReadUInt32Be());
+        n = br.ReadUInt16Be();
+        for (int i = 0; i < n; i++)
+            AchievementsRise.Add((int)br.ReadUInt32Be());
+        n = br.ReadUInt16Be();
+        for (int i = 0; i < n; i++)
+            BoolAchievements.Add((int)br.ReadUInt32Be());
+        TimeScale = br.ReadUInt32Be();
     }
 }

@@ -12,6 +12,11 @@ public struct Pong() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        return;
+    }
+
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
     }
 }

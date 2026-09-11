@@ -32,5 +32,9 @@ public struct GetColiseumRewardResponse() : ISerializable
 
         bw.WriteUTF8(SessionKey);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

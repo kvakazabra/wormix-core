@@ -59,5 +59,9 @@ public struct AbstractProfileStructure : ISerializable
         bw.WriteUInt16Be(0);
         ClanMember.Serialize(output);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

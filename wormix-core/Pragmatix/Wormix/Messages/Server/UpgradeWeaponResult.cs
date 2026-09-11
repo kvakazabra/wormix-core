@@ -24,5 +24,9 @@ public struct UpgradeWeaponResult() : ISerializable
         bw.WriteUInt16Be((ushort)RecipeId);
         bw.WriteUInt16Be((ushort)Result);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

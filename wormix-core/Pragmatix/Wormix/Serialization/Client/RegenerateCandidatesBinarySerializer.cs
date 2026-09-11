@@ -20,10 +20,7 @@ public class RegenerateCandidatesBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         RegenerateCandidates msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.AllTeam = br.ReadByte() != 0;
-
+        msg.Deserialize(input);
         return msg;
     }
 }

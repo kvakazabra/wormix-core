@@ -25,5 +25,9 @@ public struct GetSpecialDealResponse() : ISerializable
         bw.WriteUInt16Be((ushort)WeaponId);
         bw.Write(RubyPrice);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

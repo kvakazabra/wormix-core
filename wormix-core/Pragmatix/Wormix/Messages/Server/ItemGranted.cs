@@ -29,5 +29,9 @@ public struct ItemGranted() : ISerializable
         bw.WriteUInt32Be((uint)ItemCount);
         bw.WriteUTF8(SessionId);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

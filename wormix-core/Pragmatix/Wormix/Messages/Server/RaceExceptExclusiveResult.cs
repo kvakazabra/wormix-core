@@ -28,5 +28,9 @@ public struct RaceExceptExclusiveResult() : ISerializable
         bw.WriteUInt16Be((ushort)Race);
         bw.Write(Skin);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

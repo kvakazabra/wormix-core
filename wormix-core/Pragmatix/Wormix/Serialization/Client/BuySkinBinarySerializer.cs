@@ -20,11 +20,7 @@ public class BuySkinBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         BuySkin msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.SkinId = br.ReadByte();
-        msg.MoneyType = (short)br.ReadUInt16Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

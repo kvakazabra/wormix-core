@@ -20,11 +20,7 @@ public class AssembleEquipBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         AssembleEquip msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.FamilyId = (short)br.ReadUInt16Be();
-        msg.MoneyType = (short)br.ReadUInt16Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

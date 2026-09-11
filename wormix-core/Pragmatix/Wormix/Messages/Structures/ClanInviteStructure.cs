@@ -56,5 +56,9 @@ public struct ClanInviteStructure() : ISerializable
         bw.WriteUTF8(Name);
         bw.WriteUInt32Be((uint)InviteDate);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

@@ -39,5 +39,9 @@ public struct SelectStuffResultStructure : ISerializable
         bw.WriteUInt16Be((ushort)ResultArtifact);
         bw.WriteUInt16Be((ushort)ArtifactId);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

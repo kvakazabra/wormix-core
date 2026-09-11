@@ -18,6 +18,8 @@ public class GetBundlesBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        return new GetBundles();
+        GetBundles msg = new();
+        msg.Deserialize(input);
+        return msg;
     }
 }

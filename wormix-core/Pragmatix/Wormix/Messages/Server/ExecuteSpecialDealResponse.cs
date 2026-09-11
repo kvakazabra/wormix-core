@@ -33,5 +33,9 @@ public struct ExecuteSpecialDealResponse() : ISerializable
         bw.Write(RubyPrice);
         bw.WriteUTF8(SessionKey);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

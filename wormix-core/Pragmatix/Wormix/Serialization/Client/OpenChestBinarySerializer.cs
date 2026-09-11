@@ -20,10 +20,7 @@ public class OpenChestBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         OpenChest msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.RecipeId = (short)br.ReadUInt16Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

@@ -21,21 +21,7 @@ public class SetBackpackConfBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         SetBackpackConf msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        ushort n = br.ReadUInt16Be();
-        for (int i = 0; i < n; i++)
-        {
-            ushort size = br.ReadUInt16Be();
-            BackpackConfStructure s = new();
-            ushort count = br.ReadUInt16Be();
-            s.Config = new List<short>();
-            for (int j = 0; j < count; j++)
-                s.Config.Add((short)br.ReadUInt16Be());
-            msg.Configs.Add(s);
-        }
-        msg.ActiveConfig = br.ReadByte();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

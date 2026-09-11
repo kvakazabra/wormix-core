@@ -18,6 +18,8 @@ public class JoinToChatBinarySerializer : ICommandSerializer
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        return new JoinToChat();
+        JoinToChat msg = new();
+        msg.Deserialize(input);
+        return msg;
     }
 }

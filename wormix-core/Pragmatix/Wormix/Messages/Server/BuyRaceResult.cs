@@ -43,5 +43,9 @@ public struct BuyRaceResult() : ISerializable
         bw.WriteUInt16Be((ushort)Race);
         bw.WriteUInt16Be((ushort)Races);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

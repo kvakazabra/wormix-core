@@ -44,5 +44,9 @@ public struct GetAchievementsResult() : ISerializable
 
         bw.Write(InvestedAwardPoints);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

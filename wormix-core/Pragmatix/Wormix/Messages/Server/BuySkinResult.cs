@@ -45,5 +45,9 @@ public struct BuySkinResult() : ISerializable
         bw.WriteUInt16Be((ushort)Skins.Count);
         Skins.ForEach((x) => bw.Write(x));
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

@@ -24,5 +24,9 @@ public struct BackpackConfStructure : ISerializable
         foreach (short val in Config)
             bw.WriteUInt16Be((ushort)val);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

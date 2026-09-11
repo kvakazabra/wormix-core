@@ -20,11 +20,7 @@ public class BuyGroupSlotBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         BuyGroupSlot msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.NewSlotIndex = br.ReadByte();
-        msg.MoneyType = (short)br.ReadUInt16Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

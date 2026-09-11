@@ -30,5 +30,9 @@ public struct RestrictionItemStructure() : ISerializable
         bw.WriteUInt16Be((ushort)Blocks.Count);
         Blocks.ForEach((x) => bw.Write((byte)x));
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

@@ -20,10 +20,7 @@ public class GetVipSubscriptionBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         GetVipSubscription msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.VipSubscriptionId = (int)br.ReadUInt32Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

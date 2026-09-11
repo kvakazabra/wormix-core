@@ -24,5 +24,9 @@ public struct PumpReactionRateStructure : ISerializable
         bw.WriteUInt32Be(FriendId);
         bw.Write((byte)Result);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

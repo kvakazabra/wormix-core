@@ -47,5 +47,9 @@ public struct ShopResult() : ISerializable
             x.Serialize(output);
         });
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

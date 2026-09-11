@@ -83,5 +83,9 @@ public struct UnitStructure : ISerializable
         ClanMember.Serialize(output);
         bw.Write((byte)Rank);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

@@ -24,5 +24,9 @@ public struct UnluckyCraftCount : ISerializable
         bw.WriteUInt16Be((ushort)RecipeId);
         bw.WriteUInt32Be((uint)Count);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

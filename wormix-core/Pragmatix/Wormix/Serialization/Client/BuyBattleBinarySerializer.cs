@@ -20,11 +20,7 @@ public class BuyBattleBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         BuyBattle msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.MoneyType = (int)br.ReadUInt32Be();
-        msg.Bulk = br.ReadByte() != 0;
-
+        msg.Deserialize(input);
         return msg;
     }
 }

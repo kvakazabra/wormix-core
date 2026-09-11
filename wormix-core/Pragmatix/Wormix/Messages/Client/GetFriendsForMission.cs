@@ -15,6 +15,15 @@ public struct GetFriendsForMission() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        ushort n = br.ReadUInt16Be();
+        for (int i = 0; i < n; i++)
+            BossIds.Add((short)br.ReadUInt16Be());
+        BattleWager = (short)br.ReadUInt16Be();
     }
 }

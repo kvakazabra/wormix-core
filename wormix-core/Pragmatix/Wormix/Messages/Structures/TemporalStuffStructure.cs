@@ -24,5 +24,9 @@ public struct TemporalStuffStructure : ISerializable
         bw.WriteUInt16Be((ushort)StuffId);
         bw.WriteUInt32Be((uint)ExpireDate);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

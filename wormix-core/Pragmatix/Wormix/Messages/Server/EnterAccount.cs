@@ -171,5 +171,9 @@ public struct EnterAccount() : ISerializable
             ReconnectResult.Serialize(output);
         }
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

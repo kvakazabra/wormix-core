@@ -20,11 +20,7 @@ public class GetQuestRewardBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         GetQuestReward msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.QuestId = (int)br.ReadUInt32Be();
-        msg.RewardId = (int)br.ReadUInt32Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

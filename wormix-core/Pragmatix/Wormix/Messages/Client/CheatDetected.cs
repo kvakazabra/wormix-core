@@ -16,6 +16,14 @@ public struct CheatDetected() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        SessionKey = br.ReadUTF8();
+        BanType = (short)br.ReadUInt16Be();
+        BanNote = br.ReadUTF8();
     }
 }

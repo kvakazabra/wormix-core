@@ -32,5 +32,9 @@ public struct EndTurnResponse() : ISerializable
         bw.WriteUInt16Be((ushort)TurnNum);
         bw.WriteUInt16Be((ushort)LastTurnNum);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

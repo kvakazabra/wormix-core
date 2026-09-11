@@ -24,5 +24,9 @@ public struct BossWormStructure() : ISerializable
         bw.Write((byte)(IsPlayerTeam ? 1 : 0));
         bw.WriteUInt32Be((uint)Hp);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

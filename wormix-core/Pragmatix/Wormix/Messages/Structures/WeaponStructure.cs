@@ -24,5 +24,9 @@ public struct WeaponStructure : ISerializable
         bw.WriteUInt32Be(Id);
         bw.WriteUInt32Be((uint)Count);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

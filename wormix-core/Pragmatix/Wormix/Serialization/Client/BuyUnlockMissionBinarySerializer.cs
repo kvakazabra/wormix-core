@@ -20,10 +20,7 @@ public class BuyUnlockMissionBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         BuyUnlockMission msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.MissionId = (short)br.ReadUInt16Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

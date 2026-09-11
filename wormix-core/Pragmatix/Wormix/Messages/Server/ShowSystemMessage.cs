@@ -20,5 +20,9 @@ public struct ShowSystemMessage() : ISerializable
         BinaryWriter bw = new BinaryWriter(output);
         bw.WriteUTF8(Msg);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

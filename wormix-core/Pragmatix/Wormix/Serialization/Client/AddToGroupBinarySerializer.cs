@@ -20,14 +20,7 @@ public class AddToGroupBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         AddToGroup msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.ProfileId = (int)br.ReadUInt32Be();
-        msg.MoneyType = (short)br.ReadUInt16Be();
-        msg.TeamMemberType = (short)br.ReadUInt16Be();
-        msg.ReplaceableId = (int)br.ReadUInt32Be();
-        msg.Active = br.ReadByte() != 0;
-
+        msg.Deserialize(input);
         return msg;
     }
 }

@@ -20,7 +20,7 @@ public class ColliseumInterruptSeriesBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         ColliseumInterruptSeries msg = new();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

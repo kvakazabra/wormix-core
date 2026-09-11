@@ -102,5 +102,9 @@ public struct ArenaResult() : ISerializable
 
         bw.WriteUInt32Be((uint)ZombieRiseCoolDownTime);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

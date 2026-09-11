@@ -20,11 +20,7 @@ public class GetRatingBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         GetRating msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.RatingType = (short)br.ReadUInt16Be();
-        msg.BattleWager = (short)br.ReadUInt16Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

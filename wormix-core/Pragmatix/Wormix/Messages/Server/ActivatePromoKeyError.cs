@@ -20,5 +20,9 @@ public struct ActivatePromoKeyError() : ISerializable
         BinaryWriter bw = new BinaryWriter(output);
         bw.WriteUTF8(Key);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

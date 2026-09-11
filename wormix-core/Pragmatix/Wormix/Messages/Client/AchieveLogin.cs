@@ -18,6 +18,16 @@ public struct AchieveLogin() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        ApplicationId = br.ReadUTF8();
+        SocialNetworkId = br.ReadUTF8();
+        Id = br.ReadUTF8();
+        AuthKey = br.ReadUTF8();
+        SendAchievements = br.ReadByte() != 0;
     }
 }

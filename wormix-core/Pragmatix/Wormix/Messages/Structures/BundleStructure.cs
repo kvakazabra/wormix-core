@@ -52,5 +52,9 @@ public struct BundleStructure : ISerializable
             item.Serialize(output);
         }
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

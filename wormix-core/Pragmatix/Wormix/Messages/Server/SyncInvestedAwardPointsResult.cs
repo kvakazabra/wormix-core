@@ -20,5 +20,9 @@ public struct SyncInvestedAwardPointsResult() : ISerializable
         BinaryWriter bw = new BinaryWriter(output);
         bw.Write(Points);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

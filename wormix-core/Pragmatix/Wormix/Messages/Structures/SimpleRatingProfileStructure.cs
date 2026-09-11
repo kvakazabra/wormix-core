@@ -83,5 +83,9 @@ public struct SimpleRatingProfileStructure : ISerializable
         bw.Write((byte)Rank);
         bw.Write((byte)Skin);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

@@ -20,10 +20,7 @@ public class GetRaceExceptExclusiveBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         GetRaceExceptExclusive msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.ProfileId = br.ReadUInt32Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

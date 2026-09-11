@@ -20,5 +20,9 @@ public struct ColiseumError() : ISerializable
         BinaryWriter bw = new BinaryWriter(output);
         bw.WriteUInt32Be((uint)Code);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

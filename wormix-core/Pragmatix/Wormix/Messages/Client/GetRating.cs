@@ -15,6 +15,13 @@ public struct GetRating() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        RatingType = (short)br.ReadUInt16Be();
+        BattleWager = (short)br.ReadUInt16Be();
     }
 }

@@ -37,5 +37,9 @@ public struct EndBattleResult() : ISerializable
         bw.WriteUInt16Be((ushort)MissionId);
         bw.WriteUTF8(SessionKey);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

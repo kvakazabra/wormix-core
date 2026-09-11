@@ -15,6 +15,13 @@ public struct GetAchievements() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        ProfileId = br.ReadUTF8();
+        InvestedAwardPoints = br.ReadByte();
     }
 }

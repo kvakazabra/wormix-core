@@ -15,6 +15,13 @@ public struct NeedMoney() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        Value = (int)br.ReadUInt32Be();
+        MoneyType = (int)br.ReadUInt32Be();
     }
 }

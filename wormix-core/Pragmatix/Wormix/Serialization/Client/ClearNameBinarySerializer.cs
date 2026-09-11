@@ -20,10 +20,7 @@ public class ClearNameBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         ClearName msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.TeamMemberId = (int)br.ReadUInt32Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

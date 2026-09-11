@@ -32,5 +32,9 @@ public struct AwardBackpackItemStructure : ISerializable
         bw.WriteUInt32Be((uint)StuffId);
         bw.WriteUInt32Be((uint)ExpireHours);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

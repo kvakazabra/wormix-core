@@ -20,11 +20,7 @@ public class ReturnFriendBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         ReturnFriend msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.FriendId = br.ReadUInt32Be();
-        msg.SessionKey = br.ReadUTF8();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

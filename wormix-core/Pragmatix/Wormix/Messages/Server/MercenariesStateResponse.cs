@@ -64,5 +64,9 @@ public struct MercenariesStateResponse() : ISerializable
 
         bw.WriteUInt32Be((uint)AttemptsRemainToday);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

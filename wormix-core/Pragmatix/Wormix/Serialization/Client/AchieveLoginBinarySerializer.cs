@@ -20,14 +20,7 @@ public class AchieveLoginBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         AchieveLogin msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.ApplicationId = br.ReadUTF8();
-        msg.SocialNetworkId = br.ReadUTF8();
-        msg.Id = br.ReadUTF8();
-        msg.AuthKey = br.ReadUTF8();
-        msg.SendAchievements = br.ReadByte() != 0;
-
+        msg.Deserialize(input);
         return msg;
     }
 }

@@ -15,6 +15,21 @@ public struct SelectStuff() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        ushort n = br.ReadUInt16Be();
+        for (int i = 0; i < n; i++)
+        {
+            ushort size = br.ReadUInt16Be();
+            SelectStuffStructure s = new();
+            s.ProfileId = (int)br.ReadUInt32Be();
+            s.HatId = (short)br.ReadUInt16Be();
+            s.ArtifactId = (short)br.ReadUInt16Be();
+            SelectStuffs.Add(s);
+        }
     }
 }

@@ -20,20 +20,7 @@ public class IncreaseAchievementsBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         IncreaseAchievements msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.SessionId = br.ReadUTF8();
-        ushort n = br.ReadUInt16Be();
-        for (int i = 0; i < n; i++)
-            msg.AchievementsIndex.Add((int)br.ReadUInt32Be());
-        n = br.ReadUInt16Be();
-        for (int i = 0; i < n; i++)
-            msg.AchievementsRise.Add((int)br.ReadUInt32Be());
-        n = br.ReadUInt16Be();
-        for (int i = 0; i < n; i++)
-            msg.BoolAchievements.Add((int)br.ReadUInt32Be());
-        msg.TimeScale = br.ReadUInt32Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

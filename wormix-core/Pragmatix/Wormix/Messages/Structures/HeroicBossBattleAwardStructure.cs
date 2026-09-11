@@ -33,5 +33,9 @@ public struct HeroicBossBattleAwardStructure() : ISerializable
         bw.WriteUInt16Be((ushort)WinReagentsAward.Count);
         WinReagentsAward.ForEach((x) => bw.Write((byte)x));
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

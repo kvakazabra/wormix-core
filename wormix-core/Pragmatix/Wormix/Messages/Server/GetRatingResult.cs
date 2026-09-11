@@ -48,5 +48,9 @@ public struct GetRatingResult() : ISerializable
         bw.WriteUInt16Be((ushort)RatingType);
         bw.WriteUInt16Be((ushort)BattleWager);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

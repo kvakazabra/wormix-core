@@ -20,5 +20,9 @@ public struct SendWipeConfirmCodeResponse() : ISerializable
         BinaryWriter bw = new BinaryWriter(output);
         bw.Write(Result);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

@@ -20,10 +20,7 @@ public class SyncInvestedAwardPointsBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         SyncInvestedAwardPoints msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.SessionKey = br.ReadUTF8();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

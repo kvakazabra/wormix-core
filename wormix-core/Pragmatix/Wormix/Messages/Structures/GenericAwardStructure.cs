@@ -28,5 +28,9 @@ public struct GenericAwardStructure : ISerializable
         bw.WriteUInt32Be((uint)Count);
         bw.WriteUInt32Be((uint)ItemId);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

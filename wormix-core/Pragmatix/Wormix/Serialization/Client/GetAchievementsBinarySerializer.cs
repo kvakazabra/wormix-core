@@ -20,11 +20,7 @@ public class GetAchievementsBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         GetAchievements msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.ProfileId = br.ReadUTF8();
-        msg.InvestedAwardPoints = br.ReadByte();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

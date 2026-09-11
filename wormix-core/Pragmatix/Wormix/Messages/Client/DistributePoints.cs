@@ -15,6 +15,13 @@ public struct DistributePoints() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        Armor = (int)br.ReadUInt32Be();
+        Attack = (int)br.ReadUInt32Be();
     }
 }

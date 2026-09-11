@@ -28,5 +28,9 @@ public struct BuyReactionRateResult() : ISerializable
         bw.WriteUInt32Be((uint)ReactionRateCount);
         bw.WriteUInt32Be((uint)ReactionRateLevel);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

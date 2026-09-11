@@ -14,6 +14,14 @@ public struct SellStuff() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        ushort n = br.ReadUInt16Be();
+        for (int i = 0; i < n; i++)
+            StuffIds.Add((int)br.ReadUInt32Be());
     }
 }

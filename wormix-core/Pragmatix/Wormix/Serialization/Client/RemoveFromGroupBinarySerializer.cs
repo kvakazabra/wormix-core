@@ -20,10 +20,7 @@ public class RemoveFromGroupBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         RemoveFromGroup msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.ProfileId = (int)br.ReadUInt32Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

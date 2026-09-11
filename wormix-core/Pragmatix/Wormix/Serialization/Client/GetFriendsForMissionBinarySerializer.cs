@@ -20,13 +20,7 @@ public class GetFriendsForMissionBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         GetFriendsForMission msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        ushort n = br.ReadUInt16Be();
-        for (int i = 0; i < n; i++)
-            msg.BossIds.Add((short)br.ReadUInt16Be());
-        msg.BattleWager = (short)br.ReadUInt16Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

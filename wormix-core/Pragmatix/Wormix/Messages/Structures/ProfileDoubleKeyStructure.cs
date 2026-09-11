@@ -24,5 +24,9 @@ public struct ProfileDoubleKeyStructure : ISerializable
         bw.WriteUInt32Be(LongId);
         bw.WriteUTF8(StringId);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

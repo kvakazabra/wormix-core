@@ -33,5 +33,9 @@ public struct CostStructure : ISerializable
         bw.WriteUInt32Be((uint)ItemId);
         bw.WriteUInt32Be((uint)Value);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

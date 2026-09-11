@@ -33,5 +33,9 @@ public struct GetAbandonedFriendsResult() : ISerializable
 
         bw.WriteUInt32Be((uint)TotalAbandonedFriends);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

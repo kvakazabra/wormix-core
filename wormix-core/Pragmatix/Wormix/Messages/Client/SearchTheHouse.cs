@@ -16,6 +16,14 @@ public struct SearchTheHouse() : ISerializable
 
     public void Serialize(Stream output)
     {
-        //Not needed
+        throw new NotSupportedException();
+    }
+
+    public void Deserialize(Stream input)
+    {
+        BinaryReader br = new BinaryReader(input);
+        SessionKey = br.ReadUTF8();
+        FriendId = br.ReadUInt32Be();
+        KeyNum = br.ReadByte();
     }
 }

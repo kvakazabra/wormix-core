@@ -25,5 +25,9 @@ public struct ChooseBonusItemResult() : ISerializable
         bw.WriteUInt16Be((ushort)Result);
         bw.WriteUInt32Be((uint)ItemId);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

@@ -55,5 +55,9 @@ public struct IncreaseAchievementResult() : ISerializable
         bw.WriteUInt32Be(TimeSequence);
         bw.Write(InvestedAwardPoints);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

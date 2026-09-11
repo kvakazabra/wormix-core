@@ -67,5 +67,9 @@ public struct TeamMemberStructure() : ISerializable
         bw.WriteUInt16Be((ushort)TeamMemberType);
         bw.Write((byte)(IsActive ? 1 : 0));
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

@@ -34,5 +34,9 @@ public struct BossBattleAwardStructure : ISerializable
         bw.WriteUInt16Be(0);
         NextWinBattleAward.Serialize(output);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

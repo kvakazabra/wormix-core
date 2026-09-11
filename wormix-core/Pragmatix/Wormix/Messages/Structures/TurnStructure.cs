@@ -66,5 +66,9 @@ public struct TurnStructure() : ISerializable
             el.Serialize(output);
         });
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

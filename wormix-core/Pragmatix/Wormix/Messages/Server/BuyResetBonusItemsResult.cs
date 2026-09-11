@@ -25,5 +25,9 @@ public struct BuyResetBonusItemsResult() : ISerializable
         bw.WriteUInt16Be((ushort)Result);
         bw.WriteUInt32Be((uint)RequestNum);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

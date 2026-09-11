@@ -21,19 +21,7 @@ public class SelectStuffBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         SelectStuff msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        ushort n = br.ReadUInt16Be();
-        for (int i = 0; i < n; i++)
-        {
-            ushort size = br.ReadUInt16Be();
-            SelectStuffStructure s = new();
-            s.ProfileId = (int)br.ReadUInt32Be();
-            s.HatId = (short)br.ReadUInt16Be();
-            s.ArtifactId = (short)br.ReadUInt16Be();
-            msg.SelectStuffs.Add(s);
-        }
-
+        msg.Deserialize(input);
         return msg;
     }
 }

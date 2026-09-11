@@ -31,5 +31,9 @@ public struct ShopItemStructure() : ISerializable
         bw.WriteUInt32Be((uint)Count);
         bw.WriteUInt32Be((uint)MoneyType);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}

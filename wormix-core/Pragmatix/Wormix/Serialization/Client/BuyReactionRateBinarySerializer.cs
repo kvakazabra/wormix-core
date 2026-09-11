@@ -20,10 +20,7 @@ public class BuyReactionRateBinarySerializer : ICommandSerializer
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
         BuyReactionRate msg = new();
-
-        BinaryReader br = new BinaryReader(input);
-        msg.ReactionRateLevel = (int)br.ReadUInt32Be();
-
+        msg.Deserialize(input);
         return msg;
     }
 }

@@ -25,5 +25,9 @@ public struct MoveProfileSecureToken() : ISerializable
         bw.WriteUTF8(SecureToken);
         bw.WriteUTF8(SessionKey);
     }
-}
 
+    public void Deserialize(Stream input)
+    {
+        throw new NotSupportedException();
+    }
+}
