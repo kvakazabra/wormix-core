@@ -27,6 +27,8 @@ public struct HeroicMissionDailyProgressTO : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        DefeatCount = (int)br.ReadUInt32Be();
+        WinCount = (int)br.ReadUInt32Be();
     }
 }

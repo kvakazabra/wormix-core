@@ -70,6 +70,19 @@ public struct TeamMemberStructure() : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        OwnerId = br.ReadUInt32Be();
+        Armor = br.ReadByte();
+        Attack = br.ReadByte();
+        Level = br.ReadByte();
+        Experience = (int)br.ReadUInt32Be();
+        HatId = (int)br.ReadUInt16Be();
+        RaceId = br.ReadByte();
+        Skin = br.ReadByte();
+        ArtifactId = (int)br.ReadUInt16Be();
+        SocialOwnerId = br.ReadUTF8();
+        Name = br.ReadUTF8();
+        TeamMemberType = (int)br.ReadUInt16Be();
+        IsActive = br.ReadByte() != 0;
     }
 }

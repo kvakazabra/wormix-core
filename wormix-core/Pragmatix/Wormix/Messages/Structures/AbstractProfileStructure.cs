@@ -62,6 +62,17 @@ public struct AbstractProfileStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        Id = br.ReadUInt32Be();
+        Name = br.ReadUTF8();
+        SocialId = br.ReadUTF8();
+        Money = (int)br.ReadUInt32Be();
+        RealMoney = (int)br.ReadUInt32Be();
+        Rating = (int)br.ReadUInt32Be();
+        ReactionRate = (int)br.ReadUInt32Be();
+        Rank = (int)br.ReadUInt32Be();
+        Skin = (int)br.ReadUInt32Be();
+        br.ReadUInt16Be();
+        ClanMember.Deserialize(input);
     }
 }

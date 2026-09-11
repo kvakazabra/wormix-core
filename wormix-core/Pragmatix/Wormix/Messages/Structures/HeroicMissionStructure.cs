@@ -28,6 +28,11 @@ public struct HeroicMissionStructure() : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        BossIds = new List<int>();
+        ushort count = br.ReadUInt16Be();
+        for (int i = 0; i < count; i++)
+            BossIds.Add((short)br.ReadUInt16Be());
+        MapId = br.ReadUInt32Be();
     }
 }

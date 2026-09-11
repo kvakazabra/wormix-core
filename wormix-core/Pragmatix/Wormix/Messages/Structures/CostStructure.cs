@@ -36,6 +36,9 @@ public struct CostStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        CurrencyType = (short)br.ReadUInt16Be();
+        ItemId = (int)br.ReadUInt32Be();
+        Value = (int)br.ReadUInt32Be();
     }
 }

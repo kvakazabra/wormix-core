@@ -35,6 +35,10 @@ public struct QuestProgressStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        QuestId = (int)br.ReadUInt32Be();
+        CanStartNew = br.ReadByte() != 0;
+        Progress = br.ReadUTF8();
+        Rewarded = br.ReadByte() != 0;
     }
 }

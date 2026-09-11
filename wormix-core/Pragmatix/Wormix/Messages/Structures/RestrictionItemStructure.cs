@@ -33,6 +33,12 @@ public struct RestrictionItemStructure() : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        EndDate = (int)br.ReadUInt32Be();
+        Reason = (int)br.ReadUInt32Be();
+        Blocks = new List<int>();
+        ushort count = br.ReadUInt16Be();
+        for (int i = 0; i < count; i++)
+            Blocks.Add(br.ReadByte());
     }
 }

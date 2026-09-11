@@ -27,6 +27,8 @@ public struct ProfileDoubleKeyStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        LongId = br.ReadUInt32Be();
+        StringId = br.ReadUTF8();
     }
 }

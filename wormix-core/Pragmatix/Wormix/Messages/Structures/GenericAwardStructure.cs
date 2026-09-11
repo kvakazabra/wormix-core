@@ -31,6 +31,9 @@ public struct GenericAwardStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        AwardKind = (short)br.ReadUInt16Be();
+        Count = (int)br.ReadUInt32Be();
+        ItemId = (int)br.ReadUInt32Be();
     }
 }

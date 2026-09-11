@@ -54,6 +54,17 @@ public struct ClanMemberStructure() : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        Rank = (int)br.ReadUInt16Be();
+        ClanId = (int)br.ReadUInt32Be();
+        ClanName = br.ReadUTF8();
+        ushort emblemLength = br.ReadUInt16Be();
+        ClanEmblem = new List<byte>();
+        for (int i = 0; i < emblemLength; i++)
+            ClanEmblem.Add(br.ReadByte());
+        ClanRating = (int)br.ReadUInt32Be();
+        ClanSeasonRating = (int)br.ReadUInt32Be();
+        ReviewState = (int)br.ReadUInt16Be();
+        PrevSeasonTopPlace = (int)br.ReadUInt32Be();
     }
 }

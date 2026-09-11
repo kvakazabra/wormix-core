@@ -70,6 +70,24 @@ public struct MercenariesTeamMember : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        Id = br.ReadByte();
+        Level = br.ReadByte();
+        Race = br.ReadByte();
+        Armor = br.ReadByte();
+        Attack = br.ReadByte();
+        Hat = (short)br.ReadUInt16Be();
+        Art = (short)br.ReadUInt16Be();
+        Skin = (short)br.ReadUInt16Be();
+        Active = br.ReadByte() != 0;
+        Backpack = new List<BackpackItemShortStructure>();
+        ushort count = br.ReadUInt16Be();
+        for (int i = 0; i < count; i++)
+        {
+            br.ReadUInt16Be();
+            BackpackItemShortStructure item = new BackpackItemShortStructure();
+            item.Deserialize(input);
+            Backpack.Add(item);
+        }
     }
 }

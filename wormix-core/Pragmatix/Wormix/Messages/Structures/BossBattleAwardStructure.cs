@@ -37,6 +37,11 @@ public struct BossBattleAwardStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        Id = (int)br.ReadUInt32Be();
+        br.ReadUInt16Be();
+        FirstWinBattleAward.Deserialize(input);
+        br.ReadUInt16Be();
+        NextWinBattleAward.Deserialize(input);
     }
 }

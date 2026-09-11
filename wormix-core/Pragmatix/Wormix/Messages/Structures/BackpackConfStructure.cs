@@ -27,6 +27,10 @@ public struct BackpackConfStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        Config = new List<short>();
+        ushort count = br.ReadUInt16Be();
+        for (int i = 0; i < count; i++)
+            Config.Add((short)br.ReadUInt16Be());
     }
 }

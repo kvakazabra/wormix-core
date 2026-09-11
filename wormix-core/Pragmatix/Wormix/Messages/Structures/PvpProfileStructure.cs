@@ -150,6 +150,84 @@ public struct PvpProfileStructure() : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        Id = br.ReadUInt32Be();
+        Money = (int)br.ReadUInt32Be();
+        RealMoney = (int)br.ReadUInt32Be();
+        Rating = (int)br.ReadUInt32Be();
+
+        Units = new List<TeamMemberStructure>();
+        ushort unitsCount = br.ReadUInt16Be();
+        for (int i = 0; i < unitsCount; i++)
+        {
+            br.ReadUInt16Be();
+            TeamMemberStructure u = new TeamMemberStructure();
+            u.Deserialize(input);
+            Units.Add(u);
+        }
+
+        ushort weaponPairs = br.ReadUInt16Be();
+        WeaponRecordList = new List<WeaponStructure>();
+        for (int i = 0; i < weaponPairs; i++)
+        {
+            WeaponStructure w = new WeaponStructure();
+            w.Id = br.ReadUInt16Be();
+            w.Count = (short)br.ReadUInt16Be();
+            WeaponRecordList.Add(w);
+        }
+
+        ushort stuffCount = br.ReadUInt16Be();
+        Stuff = new List<short>();
+        for (int i = 0; i < stuffCount; i++)
+            Stuff.Add((short)br.ReadUInt16Be());
+
+        ushort temporalCount = br.ReadUInt16Be();
+        TemporalStuff = new Dictionary<int, int>();
+        for (int i = 0; i < temporalCount; i++)
+        {
+            int key = (int)br.ReadUInt16Be();
+            int value = (int)br.ReadUInt32Be();
+            TemporalStuff[key] = value;
+        }
+
+        ReactionRate = (int)br.ReadUInt32Be();
+        SocialId = br.ReadUTF8();
+
+        ushort recipesCount = br.ReadUInt16Be();
+        Recipes = new List<short>();
+        for (int i = 0; i < recipesCount; i++)
+            Recipes.Add((short)br.ReadUInt16Be());
+
+        br.ReadUInt16Be();
+        ClanMember.Deserialize(input);
+        ExtraGroupSlotsCount = br.ReadByte();
+        RankPoints = (int)br.ReadUInt32Be();
+        BestRank = br.ReadByte();
+
+        PlayerNames = br.ReadUTF8();
+        SocialNetworkId = br.ReadByte();
+        PlayerNum = br.ReadByte();
+        TeamNum = br.ReadByte();
+        DailyRating = (int)br.ReadUInt32Be();
+
+        ushort backpackConfCount = br.ReadUInt16Be();
+        BackpackConf = new List<short>();
+        for (int i = 0; i < backpackConfCount; i++)
+            BackpackConf.Add((short)br.ReadUInt16Be());
+
+        ActiveTeamMembers = new List<TeamMemberStructure>();
+        ushort activeCount = br.ReadUInt16Be();
+        for (int i = 0; i < activeCount; i++)
+        {
+            br.ReadUInt16Be();
+            TeamMemberStructure member = new TeamMemberStructure();
+            member.Deserialize(input);
+            ActiveTeamMembers.Add(member);
+        }
+
+        ushort seasonsCount = br.ReadUInt16Be();
+        SeasonsBestRank = new List<byte>();
+        for (int i = 0; i < seasonsCount; i++)
+            SeasonsBestRank.Add(br.ReadByte());
     }
 }

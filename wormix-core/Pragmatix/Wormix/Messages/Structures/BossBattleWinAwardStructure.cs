@@ -41,6 +41,18 @@ public struct BossBattleWinAwardStructure() : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        Money = (int)br.ReadUInt32Be();
+        RealMoney = (int)br.ReadUInt32Be();
+        Experience = (int)br.ReadUInt32Be();
+        AwardItems = new List<AwardBackpackItemStructure>();
+        ushort count = br.ReadUInt16Be();
+        for (int i = 0; i < count; i++)
+        {
+            br.ReadUInt16Be();
+            AwardBackpackItemStructure item = new AwardBackpackItemStructure();
+            item.Deserialize(input);
+            AwardItems.Add(item);
+        }
     }
 }

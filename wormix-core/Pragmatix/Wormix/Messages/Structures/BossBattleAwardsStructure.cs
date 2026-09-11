@@ -38,6 +38,25 @@ public struct BossBattleAwardsStructure() : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        BossAwards = new List<BossBattleAwardStructure>();
+        ushort bossCount = br.ReadUInt16Be();
+        for (int i = 0; i < bossCount; i++)
+        {
+            br.ReadUInt16Be();
+            BossBattleAwardStructure el = new BossBattleAwardStructure();
+            el.Deserialize(input);
+            BossAwards.Add(el);
+        }
+
+        HeroicAwards = new List<HeroicBossBattleAwardStructure>();
+        ushort heroicCount = br.ReadUInt16Be();
+        for (int i = 0; i < heroicCount; i++)
+        {
+            br.ReadUInt16Be();
+            HeroicBossBattleAwardStructure el = new HeroicBossBattleAwardStructure();
+            el.Deserialize(input);
+            HeroicAwards.Add(el);
+        }
     }
 }

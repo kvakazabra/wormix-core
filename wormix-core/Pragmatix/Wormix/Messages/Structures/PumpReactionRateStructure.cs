@@ -27,6 +27,8 @@ public struct PumpReactionRateStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        FriendId = br.ReadUInt32Be();
+        Result = br.ReadByte();
     }
 }

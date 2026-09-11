@@ -43,6 +43,17 @@ public struct LoginAwardStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        AwardType = (short)br.ReadUInt16Be();
+        Awards = new List<GenericAwardStructure>();
+        ushort count = br.ReadUInt16Be();
+        for (int i = 0; i < count; i++)
+        {
+            br.ReadUInt16Be();
+            GenericAwardStructure award = new GenericAwardStructure();
+            award.Deserialize(input);
+            Awards.Add(award);
+        }
+        Attach = br.ReadUTF8();
     }
 }

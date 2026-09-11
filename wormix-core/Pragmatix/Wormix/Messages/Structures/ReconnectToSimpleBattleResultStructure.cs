@@ -35,6 +35,10 @@ public struct ReconnectToSimpleBattleResultStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        BattleId = (int)br.ReadUInt32Be();
+        OriginalBattleId = (int)br.ReadUInt32Be();
+        MissionId = (short)br.ReadUInt16Be();
+        LastTurnNum = (short)br.ReadUInt16Be();
     }
 }

@@ -95,6 +95,27 @@ public struct RatingProfileStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        Id = br.ReadUInt32Be();
+        Name = br.ReadUTF8();
+        Armor = (int)br.ReadUInt32Be();
+        Attack = (int)br.ReadUInt32Be();
+        Level = (int)br.ReadUInt32Be();
+        Money = (int)br.ReadUInt32Be();
+        RealMoney = (int)br.ReadUInt32Be();
+        ReactionRate = (int)br.ReadUInt32Be();
+        Rating = (int)br.ReadUInt32Be();
+        GroupCount = (int)br.ReadUInt32Be();
+        HatId = (int)br.ReadUInt16Be();
+        RaceId = (int)br.ReadUInt16Be();
+        ArtifactId = (int)br.ReadUInt16Be();
+        SocialId = br.ReadUTF8();
+        br.ReadUInt16Be();
+        ClanMember.Deserialize(input);
+        Rank = br.ReadByte();
+        Skin = br.ReadByte();
+        DailyRating = (int)br.ReadUInt32Be();
+        OldPlace = (int)br.ReadUInt32Be();
+        SocialNetId = br.ReadByte();
     }
 }

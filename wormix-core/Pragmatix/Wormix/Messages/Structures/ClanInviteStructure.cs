@@ -59,6 +59,18 @@ public struct ClanInviteStructure() : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        ClanId = (int)br.ReadUInt32Be();
+        ClanName = br.ReadUTF8();
+        ushort emblemLength = br.ReadUInt16Be();
+        ClanEmblem = new List<byte>();
+        for (int i = 0; i < emblemLength; i++)
+            ClanEmblem.Add(br.ReadByte());
+        SocialId = (int)br.ReadUInt16Be();
+        ProfileId = br.ReadUInt32Be();
+        StringProfileId = br.ReadUTF8();
+        Rank = (int)br.ReadUInt16Be();
+        Name = br.ReadUTF8();
+        InviteDate = (int)br.ReadUInt32Be();
     }
 }

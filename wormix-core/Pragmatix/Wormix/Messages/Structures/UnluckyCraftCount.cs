@@ -27,6 +27,8 @@ public struct UnluckyCraftCount : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        RecipeId = (short)br.ReadUInt16Be();
+        Count = (int)br.ReadUInt32Be();
     }
 }

@@ -45,8 +45,7 @@ public struct EndBattle() : ISerializable
         {
             br.ReadUInt16Be();
             WeaponStructure item = new();
-            item.Id = br.ReadUInt32Be();
-            item.Count = (int)br.ReadUInt32Be();
+            item.Deserialize(input);
             Items.Add(item);
         }
         BanType = (short)br.ReadUInt16Be();
@@ -63,8 +62,7 @@ public struct EndBattle() : ISerializable
         {
             br.ReadUInt16Be();
             WeaponStructure item = new();
-            item.Id = br.ReadUInt32Be();
-            item.Count = (int)br.ReadUInt32Be();
+            item.Deserialize(input);
             TotalUsedItems.Add(item);
         }
         SessionKey = br.ReadUTF8();

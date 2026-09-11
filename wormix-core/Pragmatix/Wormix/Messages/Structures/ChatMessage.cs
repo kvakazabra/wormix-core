@@ -60,6 +60,15 @@ public struct ChatMessage : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        Id = br.ReadUInt32Be();
+        Action = (short)br.ReadUInt16Be();
+        LogDate = (int)br.ReadUInt32Be();
+        SocialId = br.ReadByte();
+        ProfileId = (int)br.ReadUInt32Be();
+        ProfileStringId = br.ReadUTF8();
+        ProfileName = br.ReadUTF8();
+        Message = br.ReadUTF8();
+        Params = br.ReadUTF8();
     }
 }

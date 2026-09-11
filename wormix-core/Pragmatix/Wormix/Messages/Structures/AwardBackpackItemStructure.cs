@@ -35,6 +35,10 @@ public struct AwardBackpackItemStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        WeaponId = (int)br.ReadUInt32Be();
+        Count = (int)br.ReadUInt32Be();
+        StuffId = (int)br.ReadUInt32Be();
+        ExpireHours = (int)br.ReadUInt32Be();
     }
 }

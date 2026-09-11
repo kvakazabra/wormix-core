@@ -41,8 +41,7 @@ public struct EndTurn() : ISerializable
         {
             br.ReadUInt16Be();
             WeaponStructure item = new();
-            item.Id = br.ReadUInt32Be();
-            item.Count = (int)br.ReadUInt32Be();
+            item.Deserialize(input);
             Turn.Items.Add(item);
         }
         ushort deathsCount = br.ReadUInt16Be();
@@ -50,8 +49,7 @@ public struct EndTurn() : ISerializable
         {
             br.ReadUInt16Be();
             BossWormStructure death = new();
-            death.IsPlayerTeam = br.ReadByte() != 0;
-            death.Hp = (int)br.ReadUInt32Be();
+            death.Deserialize(input);
             Turn.Deaths.Add(death);
         }
         ushort birthsCount = br.ReadUInt16Be();
@@ -59,8 +57,7 @@ public struct EndTurn() : ISerializable
         {
             br.ReadUInt16Be();
             BossWormStructure birth = new();
-            birth.IsPlayerTeam = br.ReadByte() != 0;
-            birth.Hp = (int)br.ReadUInt32Be();
+            birth.Deserialize(input);
             Turn.Births.Add(birth);
         }
         BanType = (short)br.ReadUInt16Be();

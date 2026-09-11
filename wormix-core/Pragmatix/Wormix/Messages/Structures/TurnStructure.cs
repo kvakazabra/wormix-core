@@ -69,6 +69,41 @@ public struct TurnStructure() : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        TurnNum = (int)br.ReadUInt16Be();
+        IsPlayerTurn = br.ReadByte() != 0;
+        EndTime = (int)br.ReadUInt32Be();
+        DamageToPlayer = (int)br.ReadUInt32Be();
+        DamageToBoss = (int)br.ReadUInt32Be();
+
+        Items = new List<WeaponStructure>();
+        ushort itemsCount = br.ReadUInt16Be();
+        for (int i = 0; i < itemsCount; i++)
+        {
+            br.ReadUInt16Be();
+            WeaponStructure item = new WeaponStructure();
+            item.Deserialize(input);
+            Items.Add(item);
+        }
+
+        Deaths = new List<BossWormStructure>();
+        ushort deathsCount = br.ReadUInt16Be();
+        for (int i = 0; i < deathsCount; i++)
+        {
+            br.ReadUInt16Be();
+            BossWormStructure death = new BossWormStructure();
+            death.Deserialize(input);
+            Deaths.Add(death);
+        }
+
+        Births = new List<BossWormStructure>();
+        ushort birthsCount = br.ReadUInt16Be();
+        for (int i = 0; i < birthsCount; i++)
+        {
+            br.ReadUInt16Be();
+            BossWormStructure birth = new BossWormStructure();
+            birth.Deserialize(input);
+            Births.Add(birth);
+        }
     }
 }

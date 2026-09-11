@@ -26,9 +26,7 @@ public struct SelectStuff() : ISerializable
         {
             ushort size = br.ReadUInt16Be();
             SelectStuffStructure s = new();
-            s.ProfileId = (int)br.ReadUInt32Be();
-            s.HatId = (short)br.ReadUInt16Be();
-            s.ArtifactId = (short)br.ReadUInt16Be();
+            s.Deserialize(input);
             SelectStuffs.Add(s);
         }
     }

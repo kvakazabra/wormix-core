@@ -27,6 +27,8 @@ public struct BossWormStructure() : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        IsPlayerTeam = br.ReadByte() != 0;
+        Hp = (int)br.ReadUInt32Be();
     }
 }

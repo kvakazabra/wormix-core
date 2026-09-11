@@ -36,6 +36,13 @@ public struct HeroicBossBattleAwardStructure() : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        Level = (int)br.ReadUInt32Be();
+        br.ReadUInt16Be();
+        WinAward.Deserialize(input);
+        WinReagentsAward = new List<int>();
+        ushort count = br.ReadUInt16Be();
+        for (int i = 0; i < count; i++)
+            WinReagentsAward.Add(br.ReadByte());
     }
 }

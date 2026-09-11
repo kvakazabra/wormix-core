@@ -27,10 +27,7 @@ public struct SetBackpackConf() : ISerializable
         {
             ushort size = br.ReadUInt16Be();
             BackpackConfStructure s = new();
-            ushort count = br.ReadUInt16Be();
-            s.Config = new List<short>();
-            for (int j = 0; j < count; j++)
-                s.Config.Add((short)br.ReadUInt16Be());
+            s.Deserialize(input);
             Configs.Add(s);
         }
         ActiveConfig = br.ReadByte();

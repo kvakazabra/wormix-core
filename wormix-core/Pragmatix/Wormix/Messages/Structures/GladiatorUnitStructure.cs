@@ -39,6 +39,11 @@ public struct GladiatorUnitStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        RaceId = br.ReadByte();
+        Armor = br.ReadByte();
+        Attack = br.ReadByte();
+        HatId = (short)br.ReadUInt16Be();
+        ArtifactId = (short)br.ReadUInt16Be();
     }
 }

@@ -26,9 +26,7 @@ public struct BuyShopItems() : ISerializable
         {
             br.ReadUInt16Be();
             ShopItemStructure item = new();
-            item.Id = br.ReadUInt32Be();
-            item.Count = (int)br.ReadUInt32Be();
-            item.MoneyType = (int)br.ReadUInt32Be();
+            item.Deserialize(input);
             ShopItems.Add(item);
         }
     }

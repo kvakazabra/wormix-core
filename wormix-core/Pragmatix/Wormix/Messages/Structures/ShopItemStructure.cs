@@ -34,6 +34,9 @@ public struct ShopItemStructure() : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        Id = br.ReadUInt32Be();
+        Count = (int)br.ReadUInt32Be();
+        MoneyType = (int)br.ReadUInt32Be();
     }
 }

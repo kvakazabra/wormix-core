@@ -27,6 +27,8 @@ public struct TemporalStuffStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        StuffId = (short)br.ReadUInt16Be();
+        ExpireDate = (int)br.ReadUInt32Be();
     }
 }

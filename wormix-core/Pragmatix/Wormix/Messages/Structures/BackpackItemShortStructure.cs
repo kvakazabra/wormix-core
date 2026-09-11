@@ -27,6 +27,8 @@ public struct BackpackItemShortStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        WeaponId = (short)br.ReadUInt16Be();
+        Count = (short)br.ReadUInt16Be();
     }
 }

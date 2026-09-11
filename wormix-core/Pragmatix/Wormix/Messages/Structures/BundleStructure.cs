@@ -55,6 +55,20 @@ public struct BundleStructure : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        BinaryReader br = new BinaryReader(input);
+        ExpireInSeconds = (int)br.ReadUInt32Be();
+        Code = br.ReadUTF8();
+        Order = (int)br.ReadUInt32Be();
+        Discount = (int)br.ReadUInt32Be();
+        Votes = BitConverter.ToSingle(br.ReadBytes(4).Reverse().ToArray());
+        Items = new List<GenericAwardStructure>();
+        ushort count = br.ReadUInt16Be();
+        for (int i = 0; i < count; i++)
+        {
+            br.ReadUInt16Be();
+            GenericAwardStructure item = new GenericAwardStructure();
+            item.Deserialize(input);
+            Items.Add(item);
+        }
     }
 }
