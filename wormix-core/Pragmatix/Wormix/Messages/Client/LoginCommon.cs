@@ -23,6 +23,6 @@ public struct LoginCommon() : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotSupportedException();
+        throw new NotImplementedException();
     }
 }
