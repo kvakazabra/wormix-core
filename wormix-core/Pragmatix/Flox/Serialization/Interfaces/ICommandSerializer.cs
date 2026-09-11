@@ -14,6 +14,8 @@ public interface ICommandSerializer
 public abstract class AbstractBinaryCommandSerializer<TCommand> : ICommandSerializer
     where TCommand : ISerializable
 {
+    private const uint SERVER_MESSAGES_ID = 10000;
+
     protected abstract uint CommandId { get; }
 
     protected virtual bool IsSecure => false;
@@ -29,6 +31,12 @@ public abstract class AbstractBinaryCommandSerializer<TCommand> : ICommandSerial
         {
             return;
         }
+
+        if(CommandId < SERVER_MESSAGES_ID)
+        {
+            throw new InvalidOperationException("Trying to serialize client message on a server");
+        }
+
 
         uint size = command.GetSize();
 
@@ -58,7 +66,12 @@ public abstract class AbstractBinaryCommandSerializer<TCommand> : ICommandSerial
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        if(header.GetCommandId() == CommandId)
+        if (CommandId >= SERVER_MESSAGES_ID)
+        {
+            throw new InvalidOperationException("Trying to deserialize server message on a server");
+        }
+
+        if (header.GetCommandId() == CommandId)
         {
             throw new InvalidDataException(
                 $"Serializer {GetType().Name} (commandId = {CommandId}) " +
@@ -72,6 +85,8 @@ public abstract class AbstractBinaryCommandSerializer<TCommand> : ICommandSerial
             // todo resolve class name here
             throw new InvalidOperationException($"Failed to create an instance of TCommand");
         }
+
+        // todo maybe check md5 hash tail?
 
         command.Deserialize(input);
         return command;
