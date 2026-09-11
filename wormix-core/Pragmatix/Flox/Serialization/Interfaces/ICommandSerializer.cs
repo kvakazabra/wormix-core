@@ -58,6 +58,22 @@ public abstract class AbstractBinaryCommandSerializer<TCommand> : ICommandSerial
 
     public ISerializable DeserializeCommand(Stream input, ICommandHeader header)
     {
-        return null!;
+        if(header.GetCommandId() == CommandId)
+        {
+            throw new InvalidDataException(
+                $"Serializer {GetType().Name} (commandId = {CommandId}) " +
+                $"received command with id = {header.GetCommandId()}"
+            );
+        }
+
+        TCommand? command = (TCommand?)Activator.CreateInstance(typeof(TCommand));
+        if(command == null)
+        {
+            // todo resolve class name here
+            throw new InvalidOperationException($"Failed to create an instance of TCommand");
+        }
+
+        command.Deserialize(input);
+        return command;
     }
 }
