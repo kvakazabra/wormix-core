@@ -45,7 +45,7 @@ public class MainServerSession(TcpServer server) : TcpSession(server)
             //{14, new DistributePointsHandler(new DistributePointsBinarySerializer(), new DistributePointsController(), this)},
             //{15, new ResetParametersHandler(new ResetParametersBinarySerializer(), new ResetParametersController(), this)},
             
-            //{16, new PingHandler(new PingBinarySerializer(), new PingController(), this)},
+            {16, new PingHandler(new PingBinarySerializer(), new PingController(), this)},
             
             //{22, new ReorderGroupHandler(new ReorderGroupBinarySerializer(), new ReorderGroupController(), this)},
             
