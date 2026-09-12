@@ -2,5 +2,5 @@
 
 public class SecuritySettings
 {
-    public const string SecretKey = "qlLZmjqXfZiKcJVj";
+    public const string SecretKey = "s0PaWHUokZZMlhtKVyj3S1n5BruorNmk";
 }
