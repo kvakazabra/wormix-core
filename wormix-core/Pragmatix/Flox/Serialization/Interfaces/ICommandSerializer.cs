@@ -32,7 +32,7 @@ public abstract class AbstractBinaryCommandSerializer<TCommand> : ICommandSerial
             return;
         }
 
-        if(CommandId < SERVER_MESSAGES_ID)
+        if (CommandId < SERVER_MESSAGES_ID)
         {
             throw new InvalidOperationException("Trying to serialize client message on a server");
         }
@@ -80,7 +80,7 @@ public abstract class AbstractBinaryCommandSerializer<TCommand> : ICommandSerial
         }
 
         TCommand? command = (TCommand?)Activator.CreateInstance(typeof(TCommand));
-        if(command == null)
+        if (command == null)
         {
             // todo resolve class name here
             throw new InvalidOperationException($"Failed to create an instance of TCommand");

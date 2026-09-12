@@ -78,7 +78,7 @@ public struct UserProfileStructure() : ISerializable
             u.Serialize(output);
         });
         
-        bw.WriteUInt16Be((ushort)(WeaponRecordList.Count * 2));
+        bw.WriteUInt16Be((ushort)(WeaponRecordList.Count));
         WeaponRecordList.ForEach((w) =>
         {
             bw.WriteUInt16Be((ushort)w.Id);
