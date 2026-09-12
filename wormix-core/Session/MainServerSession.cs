@@ -26,7 +26,8 @@ public class MainServerSession(TcpServer server) : TcpSession(server)
         return new()
         {
             {1, new LoginHandler(new LoginBinarySerializer(), new LoginController(), this)},
-            
+            {136, new SetCookiesHandler(new SetCookiesBinarySerializer(), new SetCookiesController(), this)},
+
             //{84, new EndBattleHandler(new EndBattleBinarySerializer(), new EndBattleController(), this)},
 
 
