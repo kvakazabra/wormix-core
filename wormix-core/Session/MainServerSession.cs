@@ -27,6 +27,7 @@ public class MainServerSession(TcpServer server) : TcpSession(server)
         {
             {1, new LoginHandler(new LoginBinarySerializer(), new LoginController(), this)},
 
+            {128, new SetHotkeysHandler(new SetHotkeysBinarySerializer(), new SetHotkeysController(), this) },
             {136, new SetCookiesHandler(new SetCookiesBinarySerializer(), new SetCookiesController(), this) },
 
             {708, new GetArenaHandler(new GetArenaBinarySerializer(), new GetArenaController(), this) },

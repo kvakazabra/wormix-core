@@ -5,8 +5,8 @@ using wormix_core.Session;
 
 namespace wormix_core.Controllers.Http.Account;
 
-[ApiPost("cookies/set")]
-public class SetCookiesController : HttpGameController
+[ApiPost("account/set/hotkeys")]
+public class SetHotkeysController : HttpGameController
 {
     public override ISerializable ProcessMessage(ISerializable gameSerializable, TcpSession? session)
     {
