@@ -27,7 +27,7 @@ public class MainServerSession(TcpServer server) : TcpSession(server)
         {
             {1, new LoginHandler(new LoginBinarySerializer(), new LoginController(), this)},
 
-            {136, new SetCookiesHandler(new SetCookiesBinarySerializer(), new SetCookiesController(), this)},
+            {136, new SetCookiesHandler(new SetCookiesBinarySerializer(), new SetCookiesController(), this) },
 
             {708, new GetArenaHandler(new GetArenaBinarySerializer(), new GetArenaController(), this) },
 
@@ -37,6 +37,7 @@ public class MainServerSession(TcpServer server) : TcpSession(server)
             {36, new BuyRaceHandler(new BuyRaceBinarySerializer(), new BuyRaceController(), this) },
             {44, new SelectRaceHandler(new SelectRaceBinarySerializer(), new SelectRaceController(), this) },
             {50, new BuySelectRaceHandler(new BuySelectRaceBinarySerializer(), new BuySelectRaceController(), this) },
+            {29, new BuySkinHandler(new BuySkinBinarySerializer(), new BuySkinController(), this) },
 
             //{6, new StartBattleHandler(new StartBattleBinarySerializer(), new StartBattleController(), this) },
             //{84, new EndBattleHandler(new EndBattleBinarySerializer(), new EndBattleController(), this)},
