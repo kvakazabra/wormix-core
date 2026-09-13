@@ -5,7 +5,7 @@ using wormix_core.Session;
 
 namespace wormix_core.Controllers.Http.Account;
 
-[ApiPost("account/distribute_points")]
+[ApiPost("account/set/parameters")]
 public class DistributePointsController : HttpGameController
 {
     public override ISerializable ProcessMessage(ISerializable gameSerializable, TcpSession? session)

@@ -31,6 +31,9 @@ public class MainServerSession(TcpServer server) : TcpSession(server)
 
             {708, new GetArenaHandler(new GetArenaBinarySerializer(), new GetArenaController(), this) },
 
+            {14, new DistributePointsHandler(new DistributePointsBinarySerializer(), new DistributePointsController(), this) },
+            {15, new ResetParametersHandler(new ResetParametersBinarySerializer(), new ResetParametersController(), this) },
+
             //{6, new StartBattleHandler(new StartBattleBinarySerializer(), new StartBattleController(), this) },
             //{84, new EndBattleHandler(new EndBattleBinarySerializer(), new EndBattleController(), this)},
 
@@ -46,9 +49,6 @@ public class MainServerSession(TcpServer server) : TcpSession(server)
             //{12, new AddToGroupHandler(new AddToGroupBinarySerializer(), new AddToGroupController(), this)},
             //{13, new RemoveFromGroupHandler(new RemoveFromGroupBinarySerializer(), new RemoveFromGroupController(), this)},
             
-            //{14, new DistributePointsHandler(new DistributePointsBinarySerializer(), new DistributePointsController(), this)},
-            //{15, new ResetParametersHandler(new ResetParametersBinarySerializer(), new ResetParametersController(), this)},
-
             {16, new PingHandler(new PingBinarySerializer(), new PingController(), this)},
             
             //{22, new ReorderGroupHandler(new ReorderGroupBinarySerializer(), new ReorderGroupController(), this)},

@@ -10,7 +10,6 @@ public class ResetParametersController : HttpGameController
 {
     public override ISerializable ProcessMessage(ISerializable gameMessage, TcpSession? session)
     {
-        //TODO: implement
         return PostRequest(gameMessage, session)
             .ToObject<JObject>()?["data"]?
             .ToObject<ResetParametersResult>()!;
