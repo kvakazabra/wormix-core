@@ -26,8 +26,12 @@ public class MainServerSession(TcpServer server) : TcpSession(server)
         return new()
         {
             {1, new LoginHandler(new LoginBinarySerializer(), new LoginController(), this)},
+
             {136, new SetCookiesHandler(new SetCookiesBinarySerializer(), new SetCookiesController(), this)},
 
+            {708, new GetArenaHandler(new GetArenaBinarySerializer(), new GetArenaController(), this) },
+
+            //{6, new StartBattleHandler(new StartBattleBinarySerializer(), new StartBattleController(), this) },
             //{84, new EndBattleHandler(new EndBattleBinarySerializer(), new EndBattleController(), this)},
 
 
@@ -35,7 +39,6 @@ public class MainServerSession(TcpServer server) : TcpSession(server)
             
             //{3, new ShopHandler(new BuyShopItemsBinarySerializer(), new ShopController(), this)},
             
-            //{4, new ArenaHandler(new GetArenaBinarySerializer(), new ArenaController(), this)},
             //{6, new StartBattleHandler(new StartBattleBinarySerializer(), new StartBattleController(), this)},
             
             //{11, new BuyBattleHandler(new BuyBattleBinarySerializer(), new BuyBattleController(), this)},
@@ -45,7 +48,7 @@ public class MainServerSession(TcpServer server) : TcpSession(server)
             
             //{14, new DistributePointsHandler(new DistributePointsBinarySerializer(), new DistributePointsController(), this)},
             //{15, new ResetParametersHandler(new ResetParametersBinarySerializer(), new ResetParametersController(), this)},
-            
+
             {16, new PingHandler(new PingBinarySerializer(), new PingController(), this)},
             
             //{22, new ReorderGroupHandler(new ReorderGroupBinarySerializer(), new ReorderGroupController(), this)},

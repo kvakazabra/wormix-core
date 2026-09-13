@@ -16,6 +16,6 @@ public struct GetArena() : ISerializable
 
     public void Deserialize(Stream input)
     {
-        throw new NotImplementedException();
+        
     }
 }

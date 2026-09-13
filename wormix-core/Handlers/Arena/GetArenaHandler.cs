@@ -1,4 +1,4 @@
-using wormix_core.Controllers;
+﻿using wormix_core.Controllers;
 using wormix_core.Pragmatix.Flox.Serialization.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Interfaces;
 using wormix_core.Pragmatix.Wormix.Messages.Client;
@@ -8,22 +8,22 @@ using wormix_core.Session;
 
 namespace wormix_core.Handlers.Game;
 
-public class ArenaHandler(ICommandSerializer requestSerializer, IGameController controller, TcpSession session) : 
+public class GetArenaHandler(ICommandSerializer requestSerializer, IGameController controller, TcpSession session) :
     GameMessageHandler(requestSerializer, controller, session)
 {
     protected override void Process()
     {
-        if (requestMessage is GetArena arenaRequest)
+        if (requestMessage is GetArena)
         {
-            ISerializable arena = MessageController.ProcessMessage(arenaRequest, Client);
+            ISerializable response = MessageController.ProcessMessage(requestMessage, Client);
             ICommandSerializer? serializer = null;
 
-            if (arena is ArenaResult)
+            if (response is ArenaResult)
             {
                 serializer = new ArenaResultBinarySerializer();
             }
 
-            if (arena is ArenaLocked)
+            if (response is ArenaLocked)
             {
                 serializer = new ArenaLockedBinarySerializer();
             }
@@ -32,10 +32,8 @@ public class ArenaHandler(ICommandSerializer requestSerializer, IGameController 
             {
                 throw new Exception("Can't get serializer for GetArena message");
             }
-        
-            serializer.SerializeCommand(arena, Client.GetStream());
+
+            serializer.SerializeCommand(response, Client.GetStream());
         }
-
-
     }
 }
