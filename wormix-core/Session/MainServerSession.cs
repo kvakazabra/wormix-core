@@ -34,6 +34,9 @@ public class MainServerSession(TcpServer server) : TcpSession(server)
             {14, new DistributePointsHandler(new DistributePointsBinarySerializer(), new DistributePointsController(), this) },
             {15, new ResetParametersHandler(new ResetParametersBinarySerializer(), new ResetParametersController(), this) },
 
+            {36, new BuyRaceHandler(new BuyRaceBinarySerializer(), new BuyRaceController(), this) },
+            {44, new SelectRaceHandler(new SelectRaceBinarySerializer(), new SelectRaceController(), this) },
+
             //{6, new StartBattleHandler(new StartBattleBinarySerializer(), new StartBattleController(), this) },
             //{84, new EndBattleHandler(new EndBattleBinarySerializer(), new EndBattleController(), this)},
 
