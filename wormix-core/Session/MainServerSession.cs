@@ -36,6 +36,7 @@ public class MainServerSession(TcpServer server) : TcpSession(server)
 
             {36, new BuyRaceHandler(new BuyRaceBinarySerializer(), new BuyRaceController(), this) },
             {44, new SelectRaceHandler(new SelectRaceBinarySerializer(), new SelectRaceController(), this) },
+            {50, new BuySelectRaceHandler(new BuySelectRaceBinarySerializer(), new BuySelectRaceController(), this) },
 
             //{6, new StartBattleHandler(new StartBattleBinarySerializer(), new StartBattleController(), this) },
             //{84, new EndBattleHandler(new EndBattleBinarySerializer(), new EndBattleController(), this)},
