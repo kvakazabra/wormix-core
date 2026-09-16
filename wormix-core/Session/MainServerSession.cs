@@ -27,6 +27,12 @@ public class MainServerSession(TcpServer server) : TcpSession(server)
         {
             {1, new LoginHandler(new LoginBinarySerializer(), new LoginController(), this)},
 
+            {3, new ShopHandler(new BuyShopItemsBinarySerializer(), new ShopController(), this)},
+            {36, new BuyRaceHandler(new BuyRaceBinarySerializer(), new BuyRaceController(), this) },
+            {44, new SelectRaceHandler(new SelectRaceBinarySerializer(), new SelectRaceController(), this) },
+            {50, new BuySelectRaceHandler(new BuySelectRaceBinarySerializer(), new BuySelectRaceController(), this) },
+            {29, new BuySkinHandler(new BuySkinBinarySerializer(), new BuySkinController(), this) },
+
             {129, new SetBackpackConfHandler(new SetBackpackConfBinarySerializer(), new SetBackpackConfController(), this) },
             {128, new SetHotkeysHandler(new SetHotkeysBinarySerializer(), new SetHotkeysController(), this) },
             {136, new SetCookiesHandler(new SetCookiesBinarySerializer(), new SetCookiesController(), this) },
@@ -36,18 +42,11 @@ public class MainServerSession(TcpServer server) : TcpSession(server)
             {14, new DistributePointsHandler(new DistributePointsBinarySerializer(), new DistributePointsController(), this) },
             {15, new ResetParametersHandler(new ResetParametersBinarySerializer(), new ResetParametersController(), this) },
 
-            {36, new BuyRaceHandler(new BuyRaceBinarySerializer(), new BuyRaceController(), this) },
-            {44, new SelectRaceHandler(new SelectRaceBinarySerializer(), new SelectRaceController(), this) },
-            {50, new BuySelectRaceHandler(new BuySelectRaceBinarySerializer(), new BuySelectRaceController(), this) },
-            {29, new BuySkinHandler(new BuySkinBinarySerializer(), new BuySkinController(), this) },
-
             {6, new StartBattleHandler(new StartBattleBinarySerializer(), new StartBattleController(), this) },
             //{84, new EndBattleHandler(new EndBattleBinarySerializer(), new EndBattleController(), this)},
 
 
             //{2, new NeedMoneyHandler(new NeedMoneyBinarySerializer(), new NeedMoneyController(), this)},
-            
-            //{3, new ShopHandler(new BuyShopItemsBinarySerializer(), new ShopController(), this)},
             
             //{6, new StartBattleHandler(new StartBattleBinarySerializer(), new StartBattleController(), this)},
             
